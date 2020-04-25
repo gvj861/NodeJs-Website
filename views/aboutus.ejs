@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(13, 31, 34);  
+    color: white;
+}
+.topnav {
+    list-style-type: none;
+    margin: 0;
+    max-width: 100vw;
+    padding: 5px;
+    overflow: hidden;
+    background-color: #075E54;
+}
+
+ .topnav a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px 16px;
+    text-decoration: none;
+}
+
+.topnav a:hover {
+    color: white;
+    font-size: 17px;
+    background-color: #0d312d;
+    text-decoration: none;
+}
+
+.topnav a.right {
+    float: right;
+}
+
+.topnav a.icon {
+    display: none;
+}
+@media screen and (max-width: 500px) {
+    .topnav a:not(:first-child) { display: none;}
+    .topnav a.icon {
+        float: right;
+        display: block;
+    }
+    
+}
+
+@media screen and (max-width: 590px) {
+    .topnav.responsive {position: relative;}
+    .topnav.responsive .icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .topnav.responsive a {
+      float: none;
+      display: block;
+      text-align: left;
+    }
+    .botnav {
+        display: flex;
+        height: 150px;
+    }
+    #logo {
+        width: 90px;
+        height: 60px;
+    }
+    .botnav a {
+        float: left;
+        font-size: 12px;
+    }
+  }
+  .content {
+      position: relative;
+      max-width: 900px;
+      min-height: 600px;
+      /* height: auto; */
+      margin: 20px auto;
+      padding: 20px;
+      /* border: 1px solid white; */
+      box-shadow: 2px 2px 30px 1px gray;
+  }
+  .image {
+      margin: auto;
+      width: 100%;
+      height: 300px;
+      
+  }
+  .image img {
+      display: block;
+    max-width: 100%;
+    height: 85%;
+     /* height: auto; */
+    margin: 0px auto 0px auto;
+  }
+  .container {
+      border: 1px solid white;
+      padding: 5px;
+  }
+  .special,h3, .welcome {
+      padding: 10px;
+      font-size: 20px;
+      font-family: 'Courier New', Courier, monospace;
+  }
+  .image h4 {
+      font-weight: bolder;
+    text-align: center;
+  }
+  .tech ul  {
+    display: block;
+    margin: 10px;
+    padding: 10px;
+  }
+  ul li {
+      list-style-type: none;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 20px;
+  }
+  #footer {
+    position: relative;
+    /* position: fixed; */
+    /* width: 100%; */
+    top: 200px;
+    margin-top: -200px;
+    clear: both;
+}
+.botnav {
+    list-style-type: none;
+    margin: 0;
+    max-width: 100vw;
+    height: 80px;
+    padding: 10px;
+    overflow: hidden;
+    background-color: #075E54;
+}
+.botnav #appname,.botnav a {
+    position: relative;
+    width: 100px;
+    /* display: block; */
+    color: rgb(255, 255, 255);
+    /* margin: 10px; */
+    font-size: 16px;
+    padding: 10px 5px;
+    text-decoration: none;
+    text-align: center;
+}
+.botnav a:hover {
+    background-color: #0d312d;
+}
+.botnav a.right {
+    /* position: relative; */
+    float: right;
+}
+</style>
+
+
+<script src="https://js.stripe.com/v3/"></script>
+
+</head>
+
+<body>
+<div id="content">
+        <div id="header">
+            <div class="topnav" id="myTopnav">
+                <a href="/gvj-api ">HOME</a>
+                <!-- First Embedded JS writing in About us -->
+                <% if(typeof(user) != 'undefined') { %>
+                    <a href="profile.html">PROFILE</a>
+                    <a href="" class = "right" id ="logout">LOG OUT</a>
+                    <% } else {%>
+                    <a class="right" href="" id ="getlogin">LOG IN</a>
+                    <a class="right" href="" id ="getsignup">SIGN UP</a>
+                    <% } %>
+                    <a href="javascript:void(0);" class="icon" onclick="collapse()"><i class="fa fa-bars"></i></a>
+            </div>
+        </div>
+        <div class="content">
+            <div class="image">
+                <img src="/img/logo1.jpg" alt="">
+                <h4>RAPID BASKET</h4>
+            </div>
+            <div class="container">
+                <h3>Special mentions </h3>
+                <div class="special">
+                    <p>This project wouldn't be possible without the special efforts of dedicated front end developer
+                        who
+                        designed all the web pages for this project.</p>
+                    <p>Sincere thanks to</p>
+                    <h4>Surya Pavan Kumar (Designer & Front End Developer of this Project)</h4>
+                    <p>Follow me at : <a href="https://github.com/pavan-code">Github</a>
+                </div>
+                <hr style="background-color: white;">
+                <div class="welcome">
+                    <p>
+                        This is a Server Rendered Website [Version 1.0]
+                        We would be moving to the common way of consuming API from the 
+                        front-end and use good framework over there. 
+                    </p>
+                    <p>Welcome to Rapid Basket, your number one source for Clothing. We're dedicated to providing you
+                        the best of clothing, with a focus in dependability and customer service.</p>
+                    <p>We're working to turn out passion into a booming online store. We hope you'll enjoy our products
+                        as much as we enjoy offering them to you.</p>
+                    <p>Sincerely,</p>
+                    <h4>Venkata Jagannath (Backend , API developer & Architect of this Project)</h4>
+                    <p>Follow me at : <a href="https://github.com/gvj861">Github</a>
+                        <p></p>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.linkedin.com/in/gannavarapu-venkata-jagannath-099b37193/">Linked In</a>
+                    
+                    </p>
+                </div>
+                <hr style="background-color: white;">
+                <div class="tech">
+                    <h3>Architecture Used : MVC </h3>
+
+                    <h3>Technologies & Tools used in the project</h3>
+                    <ul>
+                        <li>HTML5</li>
+                        <li>CSS3</li>
+                        <li>Java Script [ES6+] </li>
+                        <li>Node JS</li>
+                        <li>Express JS</li>
+                        <li>Mongo DB</li>
+                        <li>Mongoose</li>
+                        <li>EJS[Templating Engine]</li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+        <div id="footer">
+            <div class="botnav">
+                <img id="logo" src="/img/logo.jpg" alt="">
+                <a href="#appname">RAPID BASKET</a>
+                <a class="right" href="/gvj-api/aboutus">About us</a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="/js/bundle.js"></script>
+
+    <script>
+        function collapse() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+    </script>
+</body>
+
+</html>

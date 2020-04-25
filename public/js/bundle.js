@@ -8578,7 +8578,15 @@ var ResetPasswordListener = function ResetPasswordListener(e) {
   e.preventDefault();
   var newpassword = document.getElementById('newpassword').value;
   var newpasswordconfirm = document.getElementById('newpasswordconfirm').value;
-  (0, _authHelper.resetpassword)(newpassword, newpasswordconfirm);
+
+  if (!(newpassword == newpasswordconfirm)) {
+    alert("Password fields doesnot match! Check again");
+  } // minimum 5 characters password
+  else if (newpassword.length < 5) {
+      alert("Minimum length should be 5 characters");
+    } else {
+      (0, _authHelper.resetpassword)(newpassword, newpasswordconfirm);
+    }
 };
 
 var GetForgotPasswordListener = function GetForgotPasswordListener(e) {
@@ -9912,6 +9920,9 @@ if (filterasrequired) {
     location.assign("/gvj-api?sortParameter=".concat(sortParameter, "&sortOrder=").concat(sortOrder));
   });
 } //Filtering Home Ends
+// About US
+// added in href
+// AboutUs ends
 // AUTH__SECTION
 
 

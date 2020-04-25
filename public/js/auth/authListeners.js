@@ -42,9 +42,17 @@ const ResetPasswordListener = (e) => {
     e.preventDefault()
     const newpassword = document.getElementById('newpassword').value;
     const newpasswordconfirm = document.getElementById('newpasswordconfirm').value;
-
+    if (!(newpassword == newpasswordconfirm)){
+        alert("Password fields doesnot match! Check again")
+    }
+     // minimum 5 characters password
+    else if (newpassword.length < 5)
+    {
+        alert("Minimum length should be 5 characters")
+    }
+    else{
     resetpassword(newpassword,newpasswordconfirm)
-
+    }
 }
 
 const GetForgotPasswordListener = (e) => {

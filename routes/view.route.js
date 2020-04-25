@@ -37,6 +37,7 @@ router.param('userid',user.getuserbyID)
 
 
 // R routes read routes static and dynamic both
+router.get('/aboutus',view.showAboutUs)
 
 
 router.get('/',view.getHomepage)  // all products with few details needed so done
@@ -49,7 +50,6 @@ router.get('/forgotpassword',view.getForgotPassword)
 
 router.get('/user/resetpassword/:resetid',view.getResetPage)
 
-router.get('/aboutus',view.getAboutus)
 
 router.get('/categories',category.getAllCategories)
 
@@ -78,5 +78,9 @@ auth.checkFlawLogin,
 auth.checkFlaw,
 cart.populateProducts,
 cart.getCart)
+
+
+// about us
+
 
 module.exports = router

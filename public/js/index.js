@@ -72,8 +72,13 @@ if(filterasrequired){
 
 
 
-
 //Filtering Home Ends
+
+// About US
+
+// added in href
+
+// AboutUs ends
 
 
 // AUTH__SECTION

@@ -225,6 +225,7 @@ const getsignup = () => {
 }
 
 
+
 module.exports = {
     login : login,
     logout : logout,
@@ -233,6 +234,6 @@ module.exports = {
     resetpassword : resetpassword,
     getforgotpassword : getforgotpassword,
     getlogin : getlogin,
-    getsignup : getsignup
+    getsignup : getsignup,
    
 }

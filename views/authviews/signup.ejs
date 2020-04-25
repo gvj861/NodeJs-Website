@@ -1,23 +1,317 @@
-<html>
-    <head>
-        <title>
-            <%= title %>
-        </title>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(13, 31, 34);
+}
+
+#header .topnav {
+    list-style-type: none;
+    margin: 0;
+    max-width: 100vw;
+    padding: 5px;
+    overflow: hidden;
+    background-color: #075E54;
+}
+
+.topnav a {
+    float: left;
+    padding: 10px;
+}
+
+.topnav a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px 16px;
+    text-decoration: none;
+}
+
+.topnav a:hover {
+    color: white;
+    font-size: 17px;
+    background-color: #0d312d;
+    /* letter-spacing: 1px; */
+    /* border-radius: 30px; */
+    text-decoration: none;
+}
+
+.topnav .right {
+    float: right;
+}
+
+.topnav .icon {
+    display: none;
+
+}
+.topnav i {
+    background-color: #075E54;
+}
+#signuppopup {
+    position: relative;
+    max-width: 400px;
+    margin: auto;
+    top: 30px;
+    border-radius: 10px;
+    color: white;
+    letter-spacing: 1px;
+    text-align: center;
+    display: none;
+    padding: 10px 20px;
+
+}
+#logo {
+    position: relative;
+    max-width: 100px;
+    /* left: 45%; */
+    padding: 5px;
+    margin: 5px 10px 5px 10px;
+    cursor: pointer;
+    background-color: #075E54;
+}
+@media screen and (max-width: 500px) {
+    .topnav a:not(:first-child) { display: none;}
+    .topnav a.icon {
+        float: right;
+        display: block;
+    }
+    .botnav {
+        display: flex;
+        height: 150px;
+    }
+    #logo {
+        width: 100px;
+        height: 60px;
+    }
+    .botnav a {
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 500px) {
+    .topnav.responsive {position: relative;}
+    .topnav.responsive .icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .topnav.responsive a {
+      float: none;
+      display: block;
+      text-align: left;
+    }
+  }
+#signupbox {
+    position: relative;
+    top: 82px;
+    max-width: 490px;
+    margin: auto;
+    margin-bottom: 350px;
+    padding: 30px 30px;
+    border: 1px solid black;
+    box-shadow: 2px 2px 30px 1px gray;
+}
+#sign {
+    font-size: 24px;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+}
+#signupbox p {
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 1px;
+}
+#signupbox i {
+    position: absolute;
+    font-size: 28px;
+    margin: 10px 15px;
+    color: black;
+    background-color: white;
+}
+#signupbox input {
+    width: 100%;
+    padding: 10px 50px;
+    background-color: rgb(245, 245, 245);
+    font-size: 18px;
+    border-radius: 6px;
+    border: 1px solid black;
+}
+#signupbox button {
+    position: relative;
+    width: 150px;
+    border-radius: 20px;
+    padding: 5px;
+    outline: none;
+    background-color: white;
+    color: #075E54;
+    border: 2px solid #075E54;
+
+    font-size: 20px;
+    cursor: pointer;
+}
+#signupbox span {
+    color: red;
+    display: none;
+}
+#signupbox button:hover {
+    background-color: #075E54;
+    color: white;
+    border: 2px solid white;
+    letter-spacing: 1px;
+}
+#footer {
+    position: relative;
+    top: 200px;
+    bottom: 0px;
+}
+
+.botnav {
+    list-style-type: none;
+    margin: 0;
+    max-width: 100vw;
+    padding: 5px;
+    overflow: hidden;
+    background-color: #075E54;
+}
+.botnav #appname,.botnav a {
+    position: relative;
+    width: 100px;
+    /* display: block; */
+    color: rgb(255, 255, 255);
+    /* margin: 10px; */
+    font-size: 16px;
+    padding: 20px 5px;
+    text-decoration: none;
+    text-align: center;
+}
+.botnav a:hover {
+    background-color: #0d312d;
+
+}
+.botnav a.right {
+    position: relative;
+    float: right;
+}
+    </style>
     <script src="https://js.stripe.com/v3/"></script>
 
-    </head>
-    <body>
-        <input type="text" value="" id = "firstname">
-        <br>
-        <input type="text" value = '' id = 'lastname'>
-        <br>
-        <input type="text" name="email" id="email">
-        <br>
-        <input type="password" name="password" id="signuppassword">
-        <br>
-        <input type="button" value="submit" id="signup">
-        <br>
-        
-    </body>
+</head>
+
+<body>
+    <div id="content">
+        <!-- ---------------------------------------top navigation bar---------------------------------->
+        <div id="header">
+            <div class="topnav" id="myTopnav">
+                <a href="/gvj-api">HOME</a>
+                
+                <a id="getsignup" class="right" href="">SIGN UP</a>
+                <a class="right" href="" id="getlogin">LOG IN</a>
+                <a href="javascript:void(0);" class="icon" onclick="collapse()"><i class="fa fa-bars"></i></a>
+            </div>
+        </div>
+        <div id="signuppopup">
+            <h4></h4>
+        </div>
+        <!-------------------------------------------login box------------------------------------------>
+        <div id="signupbox">
+            <p id="sign">CREATE YOUR ACCOUNT</p>
+
+            <p>First name</p>
+            <i class="fa fa-user"></i>
+            <input type="text" id="firstname" placeholder="First name">
+            <span id="firstnameerr">Please enter your first name</span>
+
+            <p>Last name</p>
+            <i class="fa fa-user"></i>
+            <input type="text" id="lastname" placeholder="Last name">
+            <span id="lastnameerr">Please enter your last name.</span>
+
+            <p>Email address</p>
+            <i class="fa fa-envelope"></i>
+            <input id="email" type="text" placeholder="Email ID">
+            <span id="mailerr">Please enter your Email ID</span>
+
+            <p>Password</p>
+            <i class="fa fa-lock"></i>
+            <input type="password" id="signuppassword" placeholder="Password">
+            <span id="passworderr">Please enter your password</span><br> <br>
+
+            <button id="signup">SIGN UP</button>
+        </div>
+        <!-------------------------------------------bottom navigation bar ----------------------------->
+        <div id="footer">
+            <div class="botnav">
+                <img src="/img/logo.jpg" alt="" id="logo">
+                <a href="#appname">RAPID BASKET</a>
+                <a class="right" href="/gvj-api/aboutus">About us</a>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        function collapse() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+        $(document).ready(function () {
+    $("#signup").click(function () {
+
+        var firstname = $("#firstname").val();
+        var lastname = $("#lastname").val();
+        var emailid = $("#email").val();
+        var password = $("#signuppassword").val();
+        if (firstname.trim() == "") {
+            $("#firstnameerr").css("display", "block");
+        }
+        else if (lastname.trim() == "") {
+            $("#lastnameerr").css("display", "block");
+        }
+        else if (emailid.trim() == "") {
+            $("#mailerr").css("display", "block");
+        }
+        else if (password.trim() == "") {
+            $("#passworderr").css("display", "block");
+        }
+        else {
+            $("#signuppopup").text("Hurrayy!! You've registered successfully");
+            $("#signuppopup").css("background-color", "#075E54");
+            $("#signuppopup").css("display", "block");
+            setTimeout(() => {
+                $("#signuppopup").css("display", "none");
+            }, 2000);
+        }
+
+
+    });
+
+});
+
+    </script>
     <script src="/js/bundle.js"></script>
+
+</body>
+
 </html>

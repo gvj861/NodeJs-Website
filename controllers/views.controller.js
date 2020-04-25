@@ -34,11 +34,6 @@ const getResetPage = (req,res) => {
       });
 }
 
-const getAboutus = (req,res) => {
-    res.status(200).render('aboutus', {
-        title: 'About Us'
-      });
-}
 
 const getSignup = (req,res) => 
 {
@@ -67,8 +62,11 @@ const showAdminPanel = (req,res) => {
     res.status(200).render('adminHome')
 }
 
+const showAboutUs = (req,res) => {
+    console.log('Came here')
+    res.status(200).render('aboutus')
+}
 module.exports = {
-    getAboutus : getAboutus,
     getForgotPassword : getForgotPassword,
     getResetPage : getResetPage,
     getLogin : getLogin,
@@ -78,6 +76,7 @@ module.exports = {
     getUpdateProduct : getUpdateProduct,
     getAccountPage : getAccountPage,
   // middleware,
-  showAdminPanel : showAdminPanel
+  showAdminPanel : showAdminPanel,
+  showAboutUs : showAboutUs
 
 }
