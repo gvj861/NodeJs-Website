@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>
+            <%= 'title' %>
+        </title>
+    <script src="https://js.stripe.com/v3/"></script>
+
+    </head>
+    <body>
+            Hello <%= 'Could be a user name here' %>
+
+            <br>
+            Categories : 
+             <br>
+             <% for (i of category) { %>
+                
+                Name : <%= i.name %>  
+
+               <input type="button" value= "Update" id = 'getcategoryupdate' name="<%= i._id %>">
+
+               <input type="button" value="Delete" id = 'deletecategory' name = "<%= i._id %>" >
+
+               <br>
+                
+            <% } %>
+
+            <h4>Create Category </h4>
+             <input type="text" id = "createcategoryname" value = '' >
+                <br>
+            <input type="button" value="Create" id = 'createcategory'>
+
+    </body>
+    <script src="/js/bundle.js"></script>
+</html>

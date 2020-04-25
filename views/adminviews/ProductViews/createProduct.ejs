@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>
+            <%= 'title' %>
+        </title>
+    <script src="https://js.stripe.com/v3/"></script>
+
+    </head>
+    <body>
+
+            <br>
+        New Product 
+        <br>
+             <br>
+                
+                Name : <input type="text" name="" value="" id="createproductname">
+                <br>
+                Description : <input type="text" name="" value="" id="createproductdescription">
+                <br>
+                Stock : <input type="text" name="" value="" id="createproductstock">
+                <br>
+                Sold : <input type="text" name="" value="" id="createproductsold">
+                <br>
+                Price : <input type="text" name="" value="" id="createproductprice">
+                <br>
+                Discount % : <input type="text" name="" id="createproductdiscount">
+                <br>
+
+            <label for="categories">Choose a category:</label>
+            <select id="categoryname" name="">
+            <% for (i of category) { %>
+                
+                    <option value= "<%= i._id %>"> <%= i.name %> </option>
+            <% } %>
+        </select>
+
+
+                
+                <input type="button" value= "Save Product" id = 'docreateproduct' name = ''>
+
+    </body>
+    <script src="/js/bundle.js"></script>
+</html>

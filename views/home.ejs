@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <title>
+            <%= title %>
+        </title>
+        <script src="https://js.stripe.com/v3/"></script>
+
+    </head>
+    <body>
+       <% if (typeof(user) != 'undefined') { %>
+    
+       <p>Hello  <%= user.firstname %> </p>
+
+       <%# this is a comment below is the way to insert pics %>
+       
+       <img src = <%= user.photo %>   alt ="<%= user.lastname %>" style= "width:28px;height:28px;" >
+
+       <input type="button" value="Logout" id = "logout">
+
+       <input type="button" value="Mycart" id = "getmycart" name = "<%= user._id %>">
+
+       <br>
+       <input type="button" value="Admin Panel" id="getpanel" name = "<%= user._id %>">
+       <br>
+       <br>
+        <input type="button" name="<%= user._id %>" id="usersettings" value="Settings">
+        <br>
+        <br>
+        <input type="button" value="MyOrders" id = "getmyorders" name = <%= user._id %> >
+        <br>
+        <br>
+        <input type="button" value="MyPurchases" id = "getmypurchases" name = <%= user._id %> >
+    
+        <br>
+
+        <% } else { %>
+        <p>Hello guest</p> 
+        <input type="button" value="Login" id = "getlogin">
+        <input type="button" value="Signup" id = "getsignup">
+        <% } %>
+
+        <br>
+        <br>
+
+        <label for="products">Filter Products:</label>
+        <select id="productfilterparam" name="">
+            <option value= "createdAt"> Latest & Brand-new </option>
+            <option value= "price"> Price </option>
+            <option value= "sold"> Popular & Trending </option>
+        </select>
+        <select id="productfilterorder" name="">
+            <option value= "desc"> High </option>
+            <option value= "asc"> Low </option>
+        </select>
+
+        <input type="button" value="Filter" id = "filterasrequired">
+        
+    <% for (i of product) { %>
+    
+        <p><%= i.name %></p>
+        <p><%= i.category.name %></p>
+        <p><%= i.price %></p>
+        <img src = <%= i.photo %> alt="Name"  style= "width:50px;height:50px;">
+        <input type="button" value="Add to Cart" id = "additemtocart" name = "<%- i._id %>">
+        <br>
+        <br>
+    <%}%>
+
+    
+    </body>
+    <script src="/js/bundle.js"></script>
+
+</html>

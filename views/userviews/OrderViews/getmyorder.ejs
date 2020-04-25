@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>
+            <%= 'title' %>
+        </title>
+    <script src="https://js.stripe.com/v3/"></script>
+
+    </head>
+    <body>
+        <% if ((typeof(order)==undefined) || (order.length == 0)) { %>
+            <p> There are no current Orders Placed or Orders Pending !!! </p>
+
+        <% } else { %>
+            
+            
+            Hello <%= user.firstname %>
+<br>
+            Your Orders
+             <br>
+            <br>
+             <% for (i of order) { %>
+                Order ID : <%= i._id %>
+                <br>
+                <br>
+                Order Status : <%= i.status %>
+                <br>
+                <br>
+
+                    <div>
+                        <% count =0 %>
+                        <% for (j of i.products) { %>
+                            <img src= <%= i.photos[count] %> alt="" style = "width : 50px;height : 50px">
+                            Name of the product : <%= i.names[count] %>
+                            Price : <%= j.price %>
+                            Count : <%= j.count %>
+                            <% count = count + 1 %>
+                    </div>
+                    <% } %>
+                <br>
+                <br>
+                Transcation ID : <%= i.transaction_id %> 
+                <br>
+                <br>
+                Total Amount Paid : <%= i.amount %>
+                <br>
+                <br>
+
+
+                
+                <% } %>
+                <br>
+                <br>
+                <br>
+
+        <% } %>
+    <br>
+    <br>
+    Please go to My Purchases for Delivered Products
+    </body>
+    <script src="/js/bundle.js"></script>
+</html>

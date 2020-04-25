@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>
+            <%= 'title' %>
+        </title>
+    <script src="https://js.stripe.com/v3/"></script>
+
+    </head>
+    <body>
+            Hello <%= 'user' %>
+All avialable Products
+             <br>
+             <% for (i of product) { %>
+                
+                <img src= <%= i.photo %> alt="Product Image" style= "width:80px;height:80px;" >
+
+                Name : <%= i.name %>  
+                <br>
+                Description : <%= i.description %>
+                <br>
+                price : <%= i.price %>
+                <br>
+                Stock : <%= i.stock %>
+                <br>
+                Category : <%= i.category.name %>
+                <br>
+                Sold : <%= i.sold %>
+                <br>
+                Discount : <%= i.discount %>%
+                <br>
+
+             <input type="button" value= "Update" id = 'getproductupdate' name="<%= i._id %>">
+
+               <input type="button" value="Delete" id = 'deleteproduct' name = "<%= i._id %>" >
+
+               <%# very imp hack i am making name of the upload button as id of file chosen for sharing %>
+
+               Upload :-- <input type="file" accept="image/*" name = "productphoto" id="<%= i._id%>">
+               
+               <input type="button"  id="uploadproductphoto" name="<%= i._id %>" value = 'Save Photo'>
+
+               <br>
+                
+            <% } %>
+
+        <br>
+        <input type="button" value="Create New Product" id = "getcreateproduct"> 
+
+    </body>
+    <script src="/js/bundle.js"></script>
+</html>

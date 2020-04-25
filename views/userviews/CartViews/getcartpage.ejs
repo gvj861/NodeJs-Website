@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>
+            <%= 'title' %>
+        </title>
+    <script src="https://js.stripe.com/v3/"></script>
+
+    </head>
+    <body>
+            <% var total = 0 %>
+        <% if ((typeof(cart)==undefined) || (cart.length == 0)) { %>
+            <p> Your cart is empty add something </p>
+        <% } else { %>
+            
+            
+            Hello <%= user.firstname %>
+Your Cart
+             <br>
+            
+             <% for (i of cart) { %>
+                
+                <img src= <%= i.product.photo %> alt="cart Image" style= "width:80px;height:80px;" >
+<br>
+                Name : <%= i.product.name %>  
+                <br>
+                Description : <%= i.product.name %>
+                <br>
+                price :  <%= i.price * i.count %> 
+                <% total += (i.price*i.count) %>
+                <br>
+                count :  <%= i.count %> 
+                <br>
+                change Quantity
+                <input type="text" name="enterquantity" id="<%= i._id %>" placeholder="...1,2,3 etc" value=''>
+                <input type="button" value="Apply" id = "applyquantity" name = "<%= i._id %>">
+                <br>
+                <input type="button" value="Remove from cart" id = "removefromcart" name = "<%= i._id %>">
+                <br>
+                <br>
+
+            <% } %>
+
+        <br>
+        <h3>Grnad Total : <%= total %> </h3>
+
+
+        <h4> <input type="button" value="Procced to check out" id= "checkout" name = "<%= cart[0].userid %>">  </h4>
+                
+        <% } %>
+    </body>
+    <script src="/js/bundle.js"></script>
+</html>

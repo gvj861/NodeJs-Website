@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>
+            <%= 'title' %>
+        </title>
+    <script src="https://js.stripe.com/v3/"></script>
+
+    </head>
+    <body>
+
+            <br>
+           Update here
+           <br> 
+             <br>
+                Image : <img src= <%= product.photo %> alt="Product Image" style= "width:80px;height:80px;" >
+
+                Name : <input type="text" value = " <%= product.name %> " id="updateproductname" > 
+                <br>
+                Description : <input type="text" value =" <%= product.description %>" id = "updateproductdescription">
+                <br>
+                price : <input type="text" value = " <%= product.price %> " id="updateproductprice" >
+                <br>
+                Stock : <input type="text" value = " <%= product.stock %> " id="updateproductstock" >
+                <br>
+                Sold : <input type="text" value = " <%= product.sold %> " id="updateproductsold" >
+                <br>
+                Discount : <input type="text" value = " <%= product.discount%> " id="updateproductdiscount" >
+                <br>
+
+
+             <input type="button" value= "Update Details" id = 'doproductupdate' name = '<%= product._id %>'>
+
+    </body>
+    <script src="/js/bundle.js"></script>
+</html>

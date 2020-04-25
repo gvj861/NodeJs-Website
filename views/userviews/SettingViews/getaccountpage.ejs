@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>
+            <%= 'title' %>
+        </title>
+        <%# Just to show that html,css,js works here %>
+        <style type="text/css">  
+            body, p, div {
+              font-family: verdana,geneva,sans-serif;
+              font-size: 16px;
+            }
+            img{
+                width : 50px ; height: 50px;
+            }
+            </style>
+    <script src="https://js.stripe.com/v3/"></script>
+    </head>
+    <body>
+        <% if(typeof(user) != 'undefined'){ %>
+
+        <img src= <%= user.photo %> alt="">
+        Upload :-- <input type="file" accept="image/*" name = "userphoto" id = "<%= user._id %>">
+               
+        <input type="button"  id="uploaduserphoto" name="<%= user._id %>" value = 'Upload'>
+
+        <br>
+        <br>
+        <p> Hey </p>
+            Hello  <%= user.firstname %>  
+        <br>
+            Email : <%= user.email %>
+        <br>
+            <h4>Change Password</h4>
+            
+        Current Password  :  <input type="password" name="" id="usercurrentpassword" >
+        <br>
+        New Password  :  <input type="password" name="" id="usernewpassword" >
+        <br>
+        Confirm New Password  :  <input type="password" name="" id="usernewconfirmpassword" >
+
+        <input type="button" value="Save Password" name="<%= user._id %>" id = "changepassword">
+    <%} else { %>
+        <%- include('notFound',{message : 'login Again Session Ended',url : '/gvj-api' }); %>
+        <% } %> 
+    </body>
+    <script src="/js/bundle.js">
+    // above include is the way to include any EJS template into another EJS template
+    </script>
+</html>
