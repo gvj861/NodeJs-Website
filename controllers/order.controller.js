@@ -75,7 +75,7 @@ const createOrder = (req,res,next) => {
 
 // for customer
 
-const getOrders = (req,res) => {
+const getOrders = (req,res,next) => {
 
     const userid = (req.profile._id).toString()
     var sortParameter = req.query.sortParameter ? req.query.sortParameter : 'createdAt'
@@ -98,7 +98,8 @@ const getOrders = (req,res) => {
             //console.log(allorders)
             res.locals.order = allorders
             res.locals.user = req.profile
-            res.status(200).render('getmyorder')
+            // res.status(200).render('getmyorder')
+            next()
         }
         
     )
@@ -162,7 +163,7 @@ const getAllOrders = (req,res) => {
 
 }
 
-const getPurchases = (req,res) => {
+const getPurchases = (req,res,next) => {
 
 const userid = (req.profile._id).toString()
 
@@ -175,9 +176,10 @@ const userid = (req.profile._id).toString()
                 })
             }
             //console.log(allorders)
-            res.locals.order = allorders
+            res.locals.purchase = allorders
             res.locals.user = req.profile
-            res.status(200).render('getmypurchases')
+            //res.status(200).render('getmypurchases')
+            next()
         }
         
     )

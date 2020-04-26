@@ -14,6 +14,8 @@ const user = require('../controllers/user.controller')
 
 const cart = require('../controllers/cart.controller')
 
+const order = require('../controllers/order.controller')
+
 router.use(auth.isLoggedInEJS) //  used here for conditional rendering on the page 
 // based on user Logging in
 
@@ -79,6 +81,18 @@ auth.checkFlaw,
 cart.populateProducts,
 cart.getCart)
 
+
+// getting profile
+
+
+// LOADING ALL # AT ONCE AS IT IS A Single Page containing all
+
+router.get('/profilepage/:userid/:usersalt',
+auth.checkFlawLogin,
+auth.checkFlaw,
+order.getPurchases,
+order.getOrders,
+view.getProfilePage)
 
 // about us
 

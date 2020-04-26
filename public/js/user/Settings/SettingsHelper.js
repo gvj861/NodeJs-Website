@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 
-const getAccountPage = (userid,token,usersalt) => {
+const getAccountPage = (userid,token,usersalt) => {  // thsi is not used because pavan made a SPA for USers
     axios({
         headers : {
             Authorization : `Bearer ${token}`
@@ -103,7 +103,7 @@ const uploadUserPhoto = (userid,token,usersalt,photo) => {
     
                 console.log(response.data.message)
                 window.setTimeout(()=> {
-                    location.assign(`/gvj-api/getaccountpage/${userid}/${usersalt}`)
+                    location.assign(`/gvj-api/profilepage/${userid}/${usersalt}`)
                 },2000)
     
             }
@@ -128,7 +128,42 @@ const uploadUserPhoto = (userid,token,usersalt,photo) => {
 
 
 
+const getMyProfile = (userid,token,usersalt) => {
 
+    axios({
+        headers : {
+            Authorization : `Bearer ${token}`
+        },
+        method : 'get',
+        url : `/gvj-api/check/${userid}`,
+        
+ 
+    })
+    .then(
+        (response) => {
+            console.log(response)
+            if (response.data.status == 'success'){
+
+                location.assign(`/gvj-api/profilepage/${userid}/${usersalt}`) // get me just all the categories
+            }
+
+        }
+
+    )
+    .catch(
+        (error) => {
+            if (error.response.data.error){
+                console.log(error.response.data.error)
+            }
+            else{
+                console.log("Internal Server Error")
+            }
+            
+        }
+    )   
+
+
+}
 
 
 
@@ -136,4 +171,5 @@ module.exports = {
     getAccountPage : getAccountPage,
     changePassword : changePassword,
     uploadUserPhoto : uploadUserPhoto,
+    getMyProfile : getMyProfile
 }

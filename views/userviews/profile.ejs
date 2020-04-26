@@ -1,0 +1,1044 @@
+<html lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Account</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(13, 31, 34);  
+    /* overflow-y: scroll; */
+}
+
+.topnav {
+    list-style-type: none;
+    margin: 0;
+    max-width: 100vw;
+    padding: 5px;
+    overflow: hidden;
+    background-color: #075E54;
+}
+
+ .topnav a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px 16px;
+    text-decoration: none;
+}
+
+.topnav a:hover {
+    color: white;
+    font-size: 17px;
+    background-color: #0d312d;
+    text-decoration: none;
+}
+
+.topnav a.right {
+    float: right;
+}
+
+.topnav a.icon {
+    display: none;
+}
+@media screen and (max-width: 500px) {
+    .topnav a:not(:first-child) { display: none;}
+    .topnav a.icon {
+        float: right;
+        display: block;
+    }
+    
+}
+#logo {
+    position: relative;
+    max-width: 100px;
+    /* left: 45%; */
+    padding: 5px;
+    margin: 5px 10px 5px 10px;
+    cursor: pointer;
+    background-color: #075E54;
+}
+@media screen and (max-width: 590px) {
+    .topnav.responsive {position: relative;}
+    .topnav.responsive .icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .topnav.responsive a {
+      float: none;
+      display: block;
+      text-align: left;
+    }
+    .botnav {
+        display: flex;
+        height: 150px;
+    }
+    #logo {
+        width: 100px;
+        height: 60px;
+    }
+    .botnav a {
+        font-size: 12px;
+    }
+  }
+.profile {
+    position: relative;
+    max-width: 1100px;
+    height: 1300px;
+    margin: auto;
+    top: 80px;
+    box-shadow: 2px 2px 30px 1px gray;
+}
+.buttons{
+    padding: 0px;
+    width: 260px;
+    background-color: #075E54;
+    height: 1300px;
+    list-style-type: none;
+}
+.buttons i {
+    font-size: 30px;
+    padding: 5px 10px;
+    /* background-color: #075E54; */
+}
+.buttons a {
+    display: block;
+    font-size: 20px;
+    border-right: 1px solid white;
+    color: rgb(255, 255, 255);
+    padding: 16px 30px;
+    text-decoration: none;
+}
+
+.buttons a:hover{
+    background-color: #075E54;
+    
+    letter-spacing: 1px;
+    color: rgb(255, 255, 255);
+}
+.buttons a:hover i {
+    background-color: #075E54;
+}
+.display {
+    position: absolute;
+    padding: 20px 20px;
+    top: 10px;
+    overflow-y: scroll;
+    height: calc(100% - 40px);
+    
+    width: calc(100% - 290px);
+    margin-left: 270px;
+    /* margin-bottom: 200px; */
+    /* border: 2px solid white; */
+    /* border: 1px solid; */
+}
+.display #account,
+#changepassword {
+    /* border: 1px solid; */
+    padding: 20px;
+    margin: 10px;
+    /* margin-bottom: 50px; */
+}
+
+#account h3,
+#changepassword h3 {
+    color: white;
+}
+#profilepic {
+    position: relative;
+    max-width: 300px;
+    margin-right: 0px;
+    left: 10%;
+}
+#profilepic img {
+    width: 190px;
+    height: auto;
+    
+    border-radius: 100px;
+}
+ #account i,
+ #changepassword i {
+    position: absolute;
+    font-size: 28px;
+    margin: 10px;
+    color: black;
+    background-color: white;
+}
+#account p,
+#changepassword p {
+    color: white;
+    position: relative;
+    margin-top: 23px;
+    margin-bottom: 2px;
+    max-width: 200px;
+    height: auto;
+    font-size: 20px;
+    font-family: sans-serif, 'Times New Roman', Times, serif;
+}
+#account input,
+#changepassword input {
+    margin-top: 2px;
+    background-color: white;
+    border-radius: 6px;
+    /* width: calc(80% - 20px); */
+    width: 100%;
+    padding: 10px 50px;
+}
+#profilepic input {
+    max-width: 300px;
+    background-color: rgb(13, 31, 34);
+    color: white;
+    padding: 10px;
+}
+#uploaduserphoto, 
+#savepassword {
+    background-color: white;
+    color: #075E54; 
+    width: 170px;    
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+}
+#uploaduserphoto:hover, 
+#savepassword:hover {
+    border: 2px solid white;
+    background-color: #075E54;
+    color: white;
+    letter-spacing: 1px;
+}
+.shipping #savesettings {
+    position: relative;
+    margin: 10px;
+    top: -30px;
+}
+@media screen and (max-width: 600px) {
+    .buttons {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .buttons a {
+        float: left;
+    }
+    .display {
+        width: calc(100% - 20px);
+        position: relative;
+        top: 100px;
+        margin: auto;
+        height: auto;
+    }
+    .display h3 {
+        left: 0px;
+    }
+    .account img {
+        float: left;
+    }
+    #profilepic {
+        left: 0px;
+    }
+    #profilepic img {
+        border-radius: 100px;
+        border: 1px solid;
+        width: 125px;
+        height: 140px;
+    }
+}
+@media screen and (max-width: 500px) {
+    .buttons a {
+        width: auto;
+        text-align: center;
+        float: none;
+    }
+    .display {
+        position: relative;
+        top: 10px;
+        margin: 10px;
+        overflow-y: scroll;
+        padding: 5px;
+        /* height: calc(100% - 10px); */
+
+    }
+    #purchase-cart, #shopping-cart {
+        padding: 5px;
+    }
+    .display h3 {
+        text-align: left;
+        left: 0px;
+    }
+    /* .profile {
+        height: 2100px;
+    } */
+    .display input {
+        width: 100%;
+    }
+}
+#footer {
+    position: relative;
+    top: 200px;
+    bottom: 0px;
+}
+
+.botnav {
+    list-style-type: none;
+    margin: 0;
+    max-width: 100vw;
+    padding: 5px;
+    overflow: hidden;
+    background-color: #075E54;
+}
+.botnav #appname,.botnav a {
+    position: relative;
+    width: 100px;
+    /* display: block; */
+    color: rgb(255, 255, 255);
+    /* margin: 10px; */
+    font-size: 16px;
+    padding: 10px 5px;
+    text-decoration: none;
+    text-align: center;
+}
+.botnav a:hover {
+    background-color: #0d312d;
+}
+.botnav a.right {
+    position: relative;
+    float: right;
+}
+
+/* ----------------------------------------------------- */
+.orders, .purchases {
+    display: none;
+    /* overflow-y: scroll; */
+}
+
+.item button img {
+    position: relative;
+    top: -4px;
+    left: -1px;
+    width: 25px;
+    height: 25px;
+    /* border-radius: 30px; */
+}
+
+#shopping-cart, #purchase-cart {
+    max-width: 750px;
+    height: auto;
+    margin: 10px auto;
+    box-shadow: 1px 2px 30px 1px rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 20px;
+    /* overflow-y: scroll; */
+    display: flex;
+    flex-direction: column;
+  }
+  #title {
+    height: 60px;
+    border-bottom: 1px solid #E1E8EE;
+    padding: 20px 30px;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    font-weight: 400;
+  }
+  .item, .product {
+    margin: 10px 20px;
+    max-width: 700px;
+    /* border: 1px solid rgb(255, 255, 255); */
+    box-shadow: 2px 2px 20px 1px gray;
+  }
+  .orderdetails {
+      position: relative;
+      max-width: 670px;
+      /* width: 100%; */
+      border-bottom: 1px solid white;
+      padding: 15px;
+      /* font-size: 22px; */
+      /* display: flex; */
+      /* margin: 10px; */
+      color: white;
+      overflow: auto;
+  }
+  .orderdetails div{
+    max-width: 670px;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 10px 0 10px 0;
+  }
+  .productdetails {
+      /* position: absolute; */
+      position: relative;
+      display: flex;
+      margin: 20px;
+      padding: 8px;
+      overflow: auto;
+      /* border: 1px solid white; */
+  }
+  .button {
+    position: relative;
+    top: 35%;
+    left: 4%;
+    height: auto;
+    /* padding-top: 30px; */
+    margin-right: 60px;
+  }
+
+  .image img{
+    /* margin-right: 25px; */
+    margin: auto 20px auto 0;
+    width: 80px;
+    height: auto;
+    /* height: auto; */
+  }
+  .description, .quantity {
+    /* margin-right: 15px; */
+    position: relative;
+    padding: 10px 10px;
+    max-width: 150px;
+    margin: auto 20px;
+    border-bottom: 1px solid white;
+    box-shadow: 1px 1px 20px 1px gray;
+    color: white;
+    text-align: left;
+  }
+
+
+  .total-price {
+      position: relative;
+   padding: 10px 10px;
+   color: white;
+   max-width: 100px;
+   border-bottom: 1px solid white;
+   box-shadow: 1px 1px 20px 1px gray;
+   margin: auto 20px;
+  }
+
+  #total p {
+      font-size: 20px;
+  }
+  #payment button{
+      position: relative;
+      max-width: 200px;
+      padding: 5px;
+      left: 40%;
+  }
+  @media screen and (max-width: 500px) {
+    .shopping-cart {
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+    }
+    .item {
+        
+      height: auto;
+      flex-wrap: wrap;
+      padding: 10px;
+      margin: 10px;
+      justify-content: center;
+    }
+   .productdetails, .orderdetails {
+       display: block;
+       float: right;
+       width: 100%;
+        margin: auto;
+   }
+   .description {
+       /* height: auto; */
+       float: right;
+       width: 100px;
+       margin: auto;
+       
+   }
+    .quantity, .total-price {
+       float: right;
+       width: 100px;
+       margin: auto;
+   }
+    .image {
+        position: relative;
+      float: left;
+      padding: 4px 0 4px 0;
+      width: 100px;
+      /* width: auto; */
+      border: 1px solid;
+    }
+ 
+    .orderdetails div {
+        max-width: 300px;
+        font-size: 14px;
+    }
+    .image img
+     {
+      width: 92px;
+      /* height: 100%; */
+
+    }
+  
+   
+    .total-price {
+        padding-top: 10px;
+    }
+    .profile {
+        height: 100%;
+    }
+
+
+  }
+
+</style>
+
+    <script src="https://js.stripe.com/v3/"></script>
+
+</head>
+
+
+
+<body>
+    
+
+    <div id="content">
+        <div id="header">
+            <div class="topnav" id="myTopnav">
+                <a href="home.html ">HOME</a>
+                <a href="profile.html">PROFILE</a>
+                <a id="signup" class="right" href="signUp.html">SIGN UP</a>
+                <a class="right" href="loginPage.html">LOG IN</a>
+                <a href="javascript:void(0);" class="icon" onclick="collapse()"><i class="fa fa-bars"></i></a>
+            </div>
+        </div>
+        <div class="profile">
+            <div class="sidenav">
+                <div class="buttons">
+                    <!-- This a single page so get account page or get order page is not used directly populate the values-->
+                    <!-- or user settings is the actual id -->
+                    
+                    <li><a href="#settings" class="active" id="settings"><i
+                                class="material-icons">settings</i>SETTINGS</a></li>
+                    <li><a href="#orders" id="orders"> <i class="fa fa-shopping-bag"></i> ORDERS</a></li>
+                    <li><a href="#purchases" id="purchases"> <i class="fa fa-credit-card"></i> PURCHASES</a></li>
+
+
+                </div>
+            </div>
+            <div class="display">
+                <div class="settings">
+                    <div id="account">
+
+                        <div id="profilepic">
+                            <img src= <%= user.photo %> alt="">
+                            <input type="file" accept="image/*" id="<%= user._id %>" name = 'userphoto'><br>
+                            <button id="uploaduserphoto" name="<%= user._id %>">UPLOAD</button>
+                            <br>
+                            <!-- <hr> -->
+                        </div>
+                        <br>
+
+                        <h3>ACCOUNT DETAILS</h3>
+                        <p>First Name</p><i class="fa fa-user"></i>
+                        <input type="text" id="firstname" value="<%= user.firstname %>"readonly>
+                        <p>Last Name</p><i class="fa fa-user"></i>
+                        <input type="text" id="lastname" value="<%= user.lastname %>" readonly>
+                        <p>Email address</p><i class="fa fa-envelope"></i>
+                        <input type="text" id="email" value="<%= user.email %>" readonly>
+                        <br> <br>
+                        <!-- <i style="font-size: 32px;" class="material-icons">image</i>
+                        <button id="uploadpic">Change picture</button> -->
+                    </div>
+
+                    <div id="changepassword">
+                        <h3>CHANGE PASSWORD</h3>
+                        <p>Current password</p><i class="fa fa-key"></i>
+                        <input type="password" id="usercurrentpassword" placeholder="Current password">
+                        <p>New password</p><i class="fa fa-key"></i>
+                        <input type="password" id="usernewpassword" placeholder="New password">
+                        <p>Confirm password</p><i class="fa fa-key"></i>
+                        <input type="password" id="usernewconfirmpassword" placeholder="Confirm password"> <br> <br>
+                        <button id="savepassword">SAVE PASSWORD</button>
+                    </div>
+                </div>
+                <div class="orders">
+                    <div id="shopping-cart">
+                        <div id="title">
+                            Order history
+                        </div>
+                        <!-- <hr> -->
+                        <div class="item">
+                            <div class="orderdetails">
+                                <div id="orderid">Order ID : ajf98345kasdhf873rhsddf</div>
+                                <div id="transactionid">Transaction ID : hg76yt64te5rt475yt86uy7t64te54triyt86uy856
+                                </div>
+
+                                <div class="orderstatus">Order status : Cancelled</div>
+                                <div id="totalamount">Total amount: $ 3456.35</div>
+                            </div>
+                            <div class="productdetails">
+                                <div class="image">
+                                    <img src="https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/10916496/2020/1/20/d709d2a2-03cf-46ca-a48d-4691f75abf2a1579508554630-Roadster-Men-Tshirts-9731579508553066-1.jpg"
+                                        alt="">
+                                </div>
+                                <div class="description">
+                                    T-shirt 5
+                                </div>
+                                <div class="total-price">
+                                    $397
+                                </div>
+                                <div class="quantity">
+                                    quantity : 4
+                                </div>
+
+                            </div>
+                            <div class="productdetails">
+                                <div class="image">
+                                    <img src="https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/1697714/2020/1/22/3a66abd7-a7bd-462e-ba8a-ce60cdbe576b1579690524370-Roadster-Men-Maroon--Navy-Blue-Striped-Round-Neck-T-shirt-93-1.jpg"
+                                        alt="">
+                                </div>
+                                <div class="description">
+                                    T-shirt 1
+                                </div>
+                                <div class="total-price">
+                                    $645
+                                </div>
+                                <div class="quantity">
+                                    quantity : 5
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="item">
+                            <div class="orderdetails">
+                                <div id="orderid">Order ID : ajf98345kasdhf873rhsddf</div>
+                                <div id="transactionid">Transaction ID : hg76yt64te5rt475yt86uy7t64te54triyt86uy856
+                                </div>
+
+                                <div class="orderstatus">Order status : Received</div>
+                                <div id="totalamount">Total amount: $ 3456.35</div>
+
+                            </div>
+                            <div class="productdetails">
+                                <div class="image">
+                                    <img src="https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/1697714/2020/1/22/3a66abd7-a7bd-462e-ba8a-ce60cdbe576b1579690524370-Roadster-Men-Maroon--Navy-Blue-Striped-Round-Neck-T-shirt-93-1.jpg"
+                                        alt="">
+                                </div>
+                                <div class="description">
+                                    T-shirt 1
+                                </div>
+                                <div class="total-price">
+                                    $645
+                                </div>
+                                <div class="quantity">
+                                    quantity : 5
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="item">
+                            <div class="orderdetails">
+                                <div id="orderid">Order ID : ajf98345kasdhf873rhsddf</div>
+                                <div id="transactionid">Transaction ID : hg76yt64te5rt475yt86uy7t64te54triyt86uy856
+                                </div>
+
+                                <div class="orderstatus">Order status : Received</div>
+                                <div id="totalamount">Total amount: $ 3456.35</div>
+
+                            </div>
+                            <div class="productdetails">
+                                <div class="image">
+                                    <img src="https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/9973579/2020/3/10/e082bbd4-6edc-4ebf-83e7-4e146f5749cc1583818610122-Roadster-Men-Tshirts-3201583818608360-1.jpg"
+                                        alt="">
+                                </div>
+                                <div class="description">
+                                    T-shirt 2
+                                </div>
+                                <div class="total-price">
+                                    $871
+                                </div>
+                                <div class="quantity">
+                                    quantity : 5
+                                </div>
+                            </div>
+                            <div class="productdetails">
+                                <div class="image">
+                                    <img src="https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/10424628/2019/9/11/00c60b27-c5ce-41c1-a9eb-92c2cdb55bc61568175213652-Roadster-Men-Tshirts-5871568175212524-1.jpg"
+                                        alt="">
+                                </div>
+                                <div class="description">
+                                    T-shirt 4
+                                </div>
+                                <div class="total-price">
+                                    $759
+                                </div>
+                                <div class="quantity">
+                                    quantity : 5
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="item">
+                            <div class="orderdetails">
+                                <div id="orderid">Order ID : ajf98345kasdhf873rhsddf</div>
+                                <div id="transactionid">Transaction ID : hg76yt64te5rt475yt86uy7t64te54triyt86uy856
+                                </div>
+
+                                <div class="orderstatus">Order status : Received</div>
+                                <div id="totalamount">Total amount: $ 3456.35</div>
+
+                            </div>
+                            <div class="productdetails">
+                                <div class="image">
+                                    <img src="https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/10964436/2020/1/7/7a41e1d9-1e42-4134-96f9-98e4d29748951578370398748-Roadster-Women-Tshirts-1341578370396838-1.jpg"
+                                        alt="">
+                                </div>
+                                <div class="description">
+                                    T-shirt 3
+                                </div>
+                                <div class="total-price">
+                                    $346
+                                </div>
+                                <div class="quantity">
+                                    quantity : 5
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="item">
+                            <div class="orderdetails">
+                                <div id="orderid">Order ID : ajf98345kasdhf873rhsddf</div>
+                                <div id="transactionid">Transaction ID : hg76yt64te5rt475yt86uy7t64te54triyt86uy856
+                                </div>
+
+                                <div class="orderstatus">Order status : Received</div>
+                                <div id="totalamount">Total amount: $ 3456.35</div>
+
+                            </div>
+                            <div class="productdetails">
+                                <div class="image">
+                                    <img src="https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/10424628/2019/9/11/00c60b27-c5ce-41c1-a9eb-92c2cdb55bc61568175213652-Roadster-Men-Tshirts-5871568175212524-1.jpg"
+                                        alt="">
+                                </div>
+                                <div class="description">
+                                    T-shirt 4
+                                </div>
+                                <div class="total-price">
+                                    $759
+                                </div>
+                                <div class="quantity">
+                                    quantity : 5
+                                </div>
+                            </div>
+                            <div class="productdetails">
+                                <div class="image">
+                                    <img src="https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/10424628/2019/9/11/00c60b27-c5ce-41c1-a9eb-92c2cdb55bc61568175213652-Roadster-Men-Tshirts-5871568175212524-1.jpg"
+                                        alt="">
+                                </div>
+                                <div class="description">
+                                    <p>T-shirt 4</p>
+                                </div>
+                                <div class="total-price">
+                                    $759
+                                </div>
+                                <div class="quantity">
+                                    quantity : 5
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="item">
+                            <div class="orderdetails">
+                                <div id="orderid">Order ID : ajf98345kasdhf873rhsddf</div>
+                                <div id="transactionid">Transaction ID : hg76yt64te5rt475yt86uy7t64te54triyt86uy856
+                                </div>
+
+                                <div class="orderstatus">Order status : Cancelled</div>
+                                <div id="totalamount">Total amount: $ 3456.35</div>
+
+                            </div>
+                            <div class="productdetails">
+                                <div class="image">
+                                    <img src="https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/10424628/2019/9/11/00c60b27-c5ce-41c1-a9eb-92c2cdb55bc61568175213652-Roadster-Men-Tshirts-5871568175212524-1.jpg"
+                                        alt="">
+                                </div>
+                                <div class="description">
+                                    T-shirt 4
+                                </div>
+                                <div class="total-price">
+                                    $759
+                                </div>
+                                <div class="quantity">
+                                    quantity : 5
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="purchases">
+                    <div id="purchase-cart">
+                        <div id="title">
+                            My purchases @ Rapid Basket.
+                        </div>
+                        <!-- <hr> -->
+                        <div class="product">
+                            <div class="orderdetails">
+                                <div id="orderid">Order ID : ajf98345kasdhf873rhsddf</div>
+                                <div id="transactionid">Transaction ID : hg76yt64te5rt475yt86uy7t64te54triyt86uy856
+                                </div>
+                                <div id="totalamount">Total amount: $ 3456.35</div>
+
+                            </div>
+                            <div class="productdetails">
+                                <div class="image">
+                                    <img src="https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/10916496/2020/1/20/d709d2a2-03cf-46ca-a48d-4691f75abf2a1579508554630-Roadster-Men-Tshirts-9731579508553066-1.jpg"
+                                        alt="">
+                                </div>
+                                <div class="description">
+                                    T-shirt 5
+                                </div>
+                                <div class="total-price">
+                                    $397
+                                </div>
+                                <div class="quantity">
+                                    quantity : 4
+                                </div>
+
+                            </div>
+                            <div class="productdetails">
+                                <div class="image">
+                                    <img src="https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/1697714/2020/1/22/3a66abd7-a7bd-462e-ba8a-ce60cdbe576b1579690524370-Roadster-Men-Maroon--Navy-Blue-Striped-Round-Neck-T-shirt-93-1.jpg"
+                                        alt="">
+                                </div>
+                                <div class="description">
+                                    T-shirt 1
+                                </div>
+                                <div class="total-price">
+                                    $645
+                                </div>
+                                <div class="quantity">
+                                    quantity : 5
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="product">
+                            <div class="orderdetails">
+                                <div id="orderid">Order ID : ajf98345kasdhf873rhsddf</div>
+                                <div id="transactionid">Transaction ID : hg76yt64te5rt475yt86uy7t64te54triyt86uy856
+                                </div>
+                                <div id="totalamount">Total amount: $ 3456.35</div>
+
+                            </div>
+                            <div class="productdetails">
+                                <div class="image">
+                                    <img src="https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/1697714/2020/1/22/3a66abd7-a7bd-462e-ba8a-ce60cdbe576b1579690524370-Roadster-Men-Maroon--Navy-Blue-Striped-Round-Neck-T-shirt-93-1.jpg"
+                                        alt="">
+                                </div>
+                                <div class="description">
+                                    T-shirt 1
+                                </div>
+                                <div class="total-price">
+                                    $645
+                                </div>
+                                <div class="quantity">
+                                    quantity : 5
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="product">
+                            <div class="orderdetails">
+                                <div id="orderid">Order ID : ajf98345kasdhf873rhsddf</div>
+                                <div id="transactionid">Transaction ID : hg76yt64te5rt475yt86uy7t64te54triyt86uy856
+                                </div>
+                                <div id="totalamount">Total amount: $ 3456.35</div>
+
+                            </div>
+                            <div class="productdetails">
+                                <div class="image">
+                                    <img src="https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/9973579/2020/3/10/e082bbd4-6edc-4ebf-83e7-4e146f5749cc1583818610122-Roadster-Men-Tshirts-3201583818608360-1.jpg"
+                                        alt="">
+                                </div>
+                                <div class="description">
+                                    T-shirt 2
+                                </div>
+                                <div class="total-price">
+                                    $871
+                                </div>
+                                <div class="quantity">
+                                    quantity : 5
+                                </div>
+                            </div>
+                            <div class="productdetails">
+                                <div class="image">
+                                    <img src="https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/10424628/2019/9/11/00c60b27-c5ce-41c1-a9eb-92c2cdb55bc61568175213652-Roadster-Men-Tshirts-5871568175212524-1.jpg"
+                                        alt="">
+                                </div>
+                                <div class="description">
+                                    T-shirt 4
+                                </div>
+                                <div class="total-price">
+                                    $759
+                                </div>
+                                <div class="quantity">
+                                    quantity : 5
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="product">
+                            <div class="orderdetails">
+                                <div id="orderid">Order ID : ajf98345kasdhf873rhsddf</div>
+                                <div id="transactionid">Transaction ID : hg76yt64te5rt475yt86uy7t64te54triyt86uy856
+                                </div>
+                                <div id="totalamount">Total amount: $ 3456.35</div>
+
+                            </div>
+                            <div class="productdetails">
+                                <div class="image">
+                                    <img src="https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/10964436/2020/1/7/7a41e1d9-1e42-4134-96f9-98e4d29748951578370398748-Roadster-Women-Tshirts-1341578370396838-1.jpg"
+                                        alt="">
+                                </div>
+                                <div class="description">
+                                    T-shirt 3
+                                </div>
+                                <div class="total-price">
+                                    $346
+                                </div>
+                                <div class="quantity">
+                                    quantity : 5
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="product">
+                            <div class="orderdetails">
+                                <div id="orderid">Order ID : ajf98345kasdhf873rhsddf</div>
+                                <div id="transactionid">Transaction ID : hg76yt64te5rt475yt86uy7t64te54triyt86uy856
+                                </div>
+                                <div id="totalamount">Total amount: $ 3456.35</div>
+
+                            </div>
+                            <div class="productdetails">
+                                <div class="image">
+                                    <img src="https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/10424628/2019/9/11/00c60b27-c5ce-41c1-a9eb-92c2cdb55bc61568175213652-Roadster-Men-Tshirts-5871568175212524-1.jpg"
+                                        alt="">
+                                </div>
+                                <div class="description">
+                                    T-shirt 4
+                                </div>
+                                <div class="total-price">
+                                    $759
+                                </div>
+                                <div class="quantity">
+                                    quantity : 5
+                                </div>
+                            </div>
+                            <div class="productdetails">
+                                <div class="image">
+                                    <img src="https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/10424628/2019/9/11/00c60b27-c5ce-41c1-a9eb-92c2cdb55bc61568175213652-Roadster-Men-Tshirts-5871568175212524-1.jpg"
+                                        alt="">
+                                </div>
+                                <div class="description">
+                                    <p>T-shirt 4</p>
+                                </div>
+                                <div class="total-price">
+                                    $759
+                                </div>
+                                <div class="quantity">
+                                    quantity : 5
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="product">
+                            <div class="orderdetails">
+                                <div id="orderid">Order ID : ajf98345kasdhf873rhsddf</div>
+                                <div id="transactionid">Transaction ID : hg76yt64te5rt475yt86uy7t64te54triyt86uy856
+                                </div>
+
+                                <div id="orderstatus">Order status : Received</div>
+                                <div id="totalamount">Total amount: $ 3456.35</div>
+
+                            </div>
+                            <div class="productdetails">
+                                <div class="image">
+                                    <img src="https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/10424628/2019/9/11/00c60b27-c5ce-41c1-a9eb-92c2cdb55bc61568175213652-Roadster-Men-Tshirts-5871568175212524-1.jpg"
+                                        alt="">
+                                </div>
+                                <div class="description">
+                                    T-shirt 4
+                                </div>
+                                <div class="total-price">
+                                    $759
+                                </div>
+                                <div class="quantity">
+                                    quantity : 5
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <div class="botnav">
+                <img src="/img/logo.jpg" alt="" id="logo">
+                <a href="#appname">RAPID BASKET</a>
+                <a class="right" href="/gvj-api/aboutus">About us</a>
+            </div>
+        </div>
+    </div>
+
+
+
+<script>
+function collapse() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+
+        $(document).ready(function () {
+    $("#settings").click(function () {
+        $(".settings").css("display", "block");
+        $(".orders").css("display", "none");
+        $(".purchases").css("display", "none");
+    });
+    $("#orders").click(function () {
+        $(".settings").css("display", "none");
+        $(".orders").css("display", "block");
+        $(".purchases").css("display", "none");
+    });
+    $("#purchases").click(function () {
+        $(".settings").css("display", "none");
+        $(".orders").css("display", "none");
+        $(".purchases").css("display", "block");
+    })
+
+
+});
+
+
+
+</script>
+
+</body>
+<script src="/js/bundle.js"></script>
+
+</html>

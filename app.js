@@ -46,6 +46,7 @@ app.set('views', [path.join(__dirname, 'views'),
                       path.join(__dirname, 'views/adminviews/ProductViews/'),
                       path.join(__dirname, 'views/adminviews/CategoryViews/'),
                       path.join(__dirname, 'views/adminviews/OrderViews/'),
+                      path.join(__dirname, 'views/userviews/'),
                       path.join(__dirname, 'views/userviews/SettingViews/'),
                       path.join(__dirname, 'views/userviews/CartViews/'),
                       path.join(__dirname, 'views/userviews/OrderViews/'),]); 

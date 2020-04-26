@@ -1,4 +1,4 @@
-import {getAccountPage,changePassword,uploadUserPhoto} from './SettingsHelper'
+import {getAccountPage,changePassword,uploadUserPhoto,getMyProfile} from './SettingsHelper'
 
 
 const token = localStorage.getItem('token')
@@ -51,7 +51,11 @@ const uploadUserPhotoListener = (e) => {
 
 
 
-
+const getMyProfileListener = (e) => {
+    
+    e.preventDefault()
+    getMyProfile(userid,token,usersalt)
+}
 
 
 
@@ -62,5 +66,6 @@ const uploadUserPhotoListener = (e) => {
 module.exports = {
     getAccountPageListener : getAccountPageListener,
     changePasswordListener : changePasswordListener,
-    uploadUserPhotoListener : uploadUserPhotoListener
+    uploadUserPhotoListener : uploadUserPhotoListener,
+    getMyProfileListener : getMyProfileListener // adding here as its the root of all user data
 }

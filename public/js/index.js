@@ -61,8 +61,8 @@ if(filterasrequired){
   filterasrequired.addEventListener('click',(e)=>{
 
   e.preventDefault();
-  var sortParameter = document.getElementById('productfilterparam').value
-  var sortOrder = document.getElementById('productfilterorder').value
+  var sortParameter = document.getElementById('sortby').value
+  var sortOrder = document.getElementById('type').value
   //filterHome(sortParameter,sortOrder)
   location.assign(`/gvj-api?sortParameter=${sortParameter}&sortOrder=${sortOrder}`)
 
@@ -79,6 +79,18 @@ if(filterasrequired){
 // added in href
 
 // AboutUs ends
+
+// Getting Profile Page  -- Patch up work
+import {getMyProfileListener} from './user/Settings/SettingsListener';
+var getmyprofile = document.getElementById('getmyprofile')
+if (getmyprofile){
+  getmyprofile.addEventListener('click',getMyProfileListener)
+}
+
+
+
+
+// Profile_page Ends
 
 
 // AUTH__SECTION
@@ -149,9 +161,10 @@ var changestatus = document.querySelectorAll('#changestatus')
 
 // Settings
 
+// not used this button due to SPA
 var usersettings = document.getElementById('usersettings')
 
-var changepassword = document.getElementById('changepassword')
+var changepassword = document.getElementById('savepassword')
 
 var uploaduserphoto = document.getElementById('uploaduserphoto')
 

@@ -9209,6 +9209,7 @@ var _axios = _interopRequireDefault(require("axios"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var getAccountPage = function getAccountPage(userid, token, usersalt) {
+  // thsi is not used because pavan made a SPA for USers
   (0, _axios.default)({
     headers: {
       Authorization: "Bearer ".concat(token)
@@ -9274,7 +9275,7 @@ var uploadUserPhoto = function uploadUserPhoto(userid, token, usersalt, photo) {
   }).then(function (response) {
     console.log(response.data.message);
     window.setTimeout(function () {
-      location.assign("/gvj-api/getaccountpage/".concat(userid, "/").concat(usersalt));
+      location.assign("/gvj-api/profilepage/".concat(userid, "/").concat(usersalt));
     }, 2000);
   }).catch(function (error) {
     console.log(error.response);
@@ -9287,10 +9288,33 @@ var uploadUserPhoto = function uploadUserPhoto(userid, token, usersalt, photo) {
   });
 };
 
+var getMyProfile = function getMyProfile(userid, token, usersalt) {
+  (0, _axios.default)({
+    headers: {
+      Authorization: "Bearer ".concat(token)
+    },
+    method: 'get',
+    url: "/gvj-api/check/".concat(userid)
+  }).then(function (response) {
+    console.log(response);
+
+    if (response.data.status == 'success') {
+      location.assign("/gvj-api/profilepage/".concat(userid, "/").concat(usersalt)); // get me just all the categories
+    }
+  }).catch(function (error) {
+    if (error.response.data.error) {
+      console.log(error.response.data.error);
+    } else {
+      console.log("Internal Server Error");
+    }
+  });
+};
+
 module.exports = {
   getAccountPage: getAccountPage,
   changePassword: changePassword,
-  uploadUserPhoto: uploadUserPhoto
+  uploadUserPhoto: uploadUserPhoto,
+  getMyProfile: getMyProfile
 };
 },{"axios":"../../node_modules/axios/index.js"}],"user/Settings/SettingsListener.js":[function(require,module,exports) {
 "use strict";
@@ -9332,10 +9356,17 @@ var uploadUserPhotoListener = function uploadUserPhotoListener(e) {
   (0, _SettingsHelper.uploadUserPhoto)(userid, token, usersalt, photo);
 };
 
+var getMyProfileListener = function getMyProfileListener(e) {
+  e.preventDefault();
+  (0, _SettingsHelper.getMyProfile)(userid, token, usersalt);
+};
+
 module.exports = {
   getAccountPageListener: getAccountPageListener,
   changePasswordListener: changePasswordListener,
-  uploadUserPhotoListener: uploadUserPhotoListener
+  uploadUserPhotoListener: uploadUserPhotoListener,
+  getMyProfileListener: getMyProfileListener // adding here as its the root of all user data
+
 };
 },{"./SettingsHelper":"user/Settings/SettingsHelper.js"}],"user/Cart/CartHelper.js":[function(require,module,exports) {
 "use strict";
@@ -9914,8 +9945,8 @@ var filterasrequired = document.getElementById('filterasrequired');
 if (filterasrequired) {
   filterasrequired.addEventListener('click', function (e) {
     e.preventDefault();
-    var sortParameter = document.getElementById('productfilterparam').value;
-    var sortOrder = document.getElementById('productfilterorder').value; //filterHome(sortParameter,sortOrder)
+    var sortParameter = document.getElementById('sortby').value;
+    var sortOrder = document.getElementById('type').value; //filterHome(sortParameter,sortOrder)
 
     location.assign("/gvj-api?sortParameter=".concat(sortParameter, "&sortOrder=").concat(sortOrder));
   });
@@ -9923,6 +9954,14 @@ if (filterasrequired) {
 // About US
 // added in href
 // AboutUs ends
+// Getting Profile Page  -- Patch up work
+
+
+var getmyprofile = document.getElementById('getmyprofile');
+
+if (getmyprofile) {
+  getmyprofile.addEventListener('click', _SettingsListener.getMyProfileListener);
+} // Profile_page Ends
 // AUTH__SECTION
 
 
@@ -9962,9 +10001,10 @@ var changestatus = document.querySelectorAll('#changestatus'); // Admin Order_se
 //ADMIN__SECTION ENDS
 // USER_SECTION
 // Settings
+// not used this button due to SPA
 
 var usersettings = document.getElementById('usersettings');
-var changepassword = document.getElementById('changepassword');
+var changepassword = document.getElementById('savepassword');
 var uploaduserphoto = document.getElementById('uploaduserphoto'); // Settings_end
 // Cart Adding
 

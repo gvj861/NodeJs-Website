@@ -22,6 +22,7 @@ router.param('orderid',order.getOrderById)
 // routes
 // get becaues this would be feeded by success url of the Stripe
 
+// creating order
 router.get('/order/create/:userid',
  cart.populateProducts,   // will get the same products that user bought
  order.createOrder,
@@ -31,19 +32,20 @@ router.get('/order/create/:userid',
  )    
 
 
+//   --- MAJOR CHANGE REFER GVJ-1.txt
  // for all customer orders
-router.get('/myorders/:userid/:usersalt',
-auth.checkFlawLogin,
-auth.checkFlaw,
-order.getOrders
-// get all orders regarding that user
- // populates the product information into the orders // then render it
-)
+// router.get('/myorders/:userid/:usersalt',
+// auth.checkFlawLogin,
+// auth.checkFlaw,
+// order.getOrders
+// // get all orders regarding that user
+//  // populates the product information into the orders // then render it
+// )
 
-router.get('/mypurchases/:userid/:usersalt',
-auth.checkFlawLogin,
-auth.checkFlaw,
-order.getPurchases)
+// router.get('/mypurchases/:userid/:usersalt',
+// auth.checkFlawLogin,
+// auth.checkFlaw,
+// order.getPurchases)  // moving to view understand that profile page contains all 3
 
 
 

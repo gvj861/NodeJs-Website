@@ -63,8 +63,12 @@ const showAdminPanel = (req,res) => {
 }
 
 const showAboutUs = (req,res) => {
-    console.log('Came here')
     res.status(200).render('aboutus')
+}
+
+const getProfilePage = (req,res) => {
+    res.status(200).render('profile.ejs')
+
 }
 module.exports = {
     getForgotPassword : getForgotPassword,
@@ -77,6 +81,7 @@ module.exports = {
     getAccountPage : getAccountPage,
   // middleware,
   showAdminPanel : showAdminPanel,
-  showAboutUs : showAboutUs
+  showAboutUs : showAboutUs,
+  getProfilePage : getProfilePage
 
 }
