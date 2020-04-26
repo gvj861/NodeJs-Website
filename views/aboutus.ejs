@@ -184,9 +184,11 @@
         <div id="header">
             <div class="topnav" id="myTopnav">
                 <a href="/gvj-api ">HOME</a>
+                
+                
                 <!-- First Embedded JS writing in About us -->
                 <% if(typeof(user) != 'undefined') { %>
-                    <a href="profile.html">PROFILE</a>
+                    <a href="" id ="getmyprofile">PROFILE</a>
                     <a href="" class = "right" id ="logout">LOG OUT</a>
                     <% } else {%>
                     <a class="right" href="" id ="getlogin">LOG IN</a>

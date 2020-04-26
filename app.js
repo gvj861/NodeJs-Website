@@ -39,6 +39,8 @@ app.use(mongoSanitize());
 
 app.set('view engine','ejs')
 
+
+
 // using nested folders in EJS
 app.set('views', [path.join(__dirname, 'views'),
                       path.join(__dirname, 'views/authviews/'),
@@ -47,9 +49,7 @@ app.set('views', [path.join(__dirname, 'views'),
                       path.join(__dirname, 'views/adminviews/CategoryViews/'),
                       path.join(__dirname, 'views/adminviews/OrderViews/'),
                       path.join(__dirname, 'views/userviews/'),
-                      path.join(__dirname, 'views/userviews/SettingViews/'),
-                      path.join(__dirname, 'views/userviews/CartViews/'),
-                      path.join(__dirname, 'views/userviews/OrderViews/'),]); 
+                      path.join(__dirname, 'views/userviews/CartViews/')])
                       //path.join(__dirname, 'views/series/')
 
 // this is done for more dynamicity of the location of the files respective to views
