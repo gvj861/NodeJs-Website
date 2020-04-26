@@ -212,11 +212,20 @@
     float: right;
 }
     </style>
+    <link rel="stylesheet" href="/css/alert.css">
+
     <script src="https://js.stripe.com/v3/"></script>
 
 </head>
 
 <body>
+    <div id="myModal" class="modal">
+
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p></p>
+        </div>
+</div>
     <div id="content">
         <!-- ---------------------------------------top navigation bar---------------------------------->
         <div id="header">
@@ -276,39 +285,7 @@
                 x.className = "topnav";
             }
         }
-        $(document).ready(function () {
-    $("#signup").click(function () {
-
-        var firstname = $("#firstname").val();
-        var lastname = $("#lastname").val();
-        var emailid = $("#email").val();
-        var password = $("#signuppassword").val();
-        if (firstname.trim() == "") {
-            $("#firstnameerr").css("display", "block");
-        }
-        else if (lastname.trim() == "") {
-            $("#lastnameerr").css("display", "block");
-        }
-        else if (emailid.trim() == "") {
-            $("#mailerr").css("display", "block");
-        }
-        else if (password.trim() == "") {
-            $("#passworderr").css("display", "block");
-        }
-        else {
-            $("#signuppopup").text("Hurrayy!! You've registered successfully");
-            $("#signuppopup").css("background-color", "#075E54");
-            $("#signuppopup").css("display", "block");
-            setTimeout(() => {
-                $("#signuppopup").css("display", "none");
-            }, 2000);
-        }
-
-
-    });
-
-});
-
+       
     </script>
     <script src="/js/bundle.js"></script>
 

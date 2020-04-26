@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import { showAlert } from '../alerts';
+
 const getMyOrder = (userid,token,usersalt) => {
 
     axios({
@@ -13,7 +15,7 @@ const getMyOrder = (userid,token,usersalt) => {
     })
     .then(
         (response) => {
-            console.log('getting order Page')
+            // console.log('getting order Page')
             location.assign(`/gvj-api/myorders/${userid}/${usersalt}`)
         }
     )
@@ -21,11 +23,12 @@ const getMyOrder = (userid,token,usersalt) => {
         (error) => {
 
             if (error.response.data.error){
-                console.log(error.response.data.error)
+                // console.log(error.response.data.error)
+                showAlert('fail',error.response.data.error)
                 
             }
             else{
-                console.log("Internal Server Error")
+                showAlert('fail',"Internal Server Error")
             }
             
 
@@ -50,7 +53,7 @@ const getMyPurchases = (userid,token,usersalt) =>{
     })
     .then(
         (response) => {
-            console.log('getting purchase Page')
+            // console.log('getting purchase Page')
            location.assign(`/gvj-api/mypurchases/${userid}/${usersalt}`)
         }
     )
@@ -58,11 +61,12 @@ const getMyPurchases = (userid,token,usersalt) =>{
         (error) => {
 
             if (error.response.data.error){
-                console.log(error.response.data.error)
+                // console.log(error.response.data.error)
+                showAlert('fail',error.response.data.error)
                 
             }
             else{
-                console.log("Internal Server Error")
+                showAlert('fail',"Internal Server Error")
             }
             
 

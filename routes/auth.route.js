@@ -32,7 +32,7 @@ router.post('/signup',
 
   check('email',"Appropriate Email is Required").isEmail(),
 
-  check ('password',"Min Length should be 5").isLength({min : 5})
+  check ('password',"Password Length should be atleast 5 characters").isLength({min : 5})
 
   // these are combinations of (middleware) callbacks that could be used in routing
 

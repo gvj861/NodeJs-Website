@@ -146,6 +146,7 @@ section {
     font-size: 20px;
     color: rgb(255, 255, 255);
     font-weight: 300;
+    padding : 10px;
   }
   .item {
     padding: px 20px;
@@ -240,18 +241,9 @@ section {
       color: white;
       border: 2px solid white;
   }
-
-  /* button {
-    width: 30px;
-    height: 30px;
-    background-color: #E1E8EE;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-  } */
   .total-price {
     width: 83px;
-    padding-top: 55px;
+    padding-top: 35px;
     text-align: center;
     font-size: 24px;
     color: rgb(255, 255, 255);
@@ -259,12 +251,12 @@ section {
   }
   #total p{
     position: relative;
-    max-width: 250px;
+    max-width: 350px;
     font-size: 28px;
     /* left: 200px; */
     /* width: auto; */
     /* float: left; */
-    left: 30%;
+    left: 28%;
     color: white;
   }
   #total span {
@@ -375,11 +367,19 @@ section {
     float: right;
 }
 </style>
+<link rel="stylesheet" href="/css/alert.css">
 
 <script src="https://js.stripe.com/v3/"></script>
 </head>
 
 <body>
+    <div id="myModal" class="modal">
+
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p></p>
+        </div>
+</div>
     <div id="content">
         <div id="header">
             <div class="topnav" id="myTopnav">
@@ -424,11 +424,11 @@ section {
                 <div class="quantity">
 
                     <span><%= i.count %></span> <br>
-                    <p>Quantity: <input id="<%= i._id %>"  type="text" value=''></p>
+                    <p>Quantity: <input class="<%= i._id %>"  type="text" value=''></p>
                     <button id="apply" name = "<%= i._id %>" >APPLY</button>
                 </div>
                 <div class="total-price">
-                    <h4>Price:</h4> ₹  <%= i.price * i.count %>
+                    <h4>Price:</h4>₹<%= i.price * i.count %>
                     <% total = total + (i.price * i.count) %>
                 </div>
             </div>

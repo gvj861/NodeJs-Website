@@ -233,12 +233,19 @@
 }
     </style>
     
-    
+    <link rel="stylesheet" href="/css/alert.css">
     <script src="https://js.stripe.com/v3/"></script>
 
 </head>
 
 <body>
+    <div id="myModal" class="modal">
+
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p></p>
+        </div>
+</div>
     <div id="content">
         <!-- ---------------------------------------top navigation bar---------------------------------->
         <div id="header">
@@ -284,39 +291,8 @@
                 x.className = "topnav";
             }
         }
-       $(document).ready(function () {
-    $("#login").click(function () {
-        var emailId = $("#email").val();
-        var password = $("#password").val();
-        if (emailId.trim() == "") {
-            // $("#mailerr").css("display", "block");
-            $("#loginpopup").text("Enter your email id!!");
-            $("#loginpopup").css("background-color", "#ff3e3e");
-            $("#loginpopup").css("display", "block");
-            setTimeout(() => {
-                $("#loginpopup").css("display", "none");
-            }, 1000);
-        }
-        else if (password.trim() == "") {
-            // $("#passworderr").css("display", "block");
-            $("#loginpopup").text("Enter your password!!");
-            $("#loginpopup").css("background-color", "#ff3e3e");
-            $("#loginpopup").css("display", "block");
-            setTimeout(() => {
-                $("#loginpopup").css("display", "none");
-            }, 1000);
-        }
-        else {
-            $("#loginpopup").text("Hurrayy!! You've successfully logged in!");
-            $("#loginpopup").css("background-color", "#075E54");
-            $("#loginpopup").css("display", "block");
-            setTimeout(() => {
-                $("#loginpopup").css("display", "none");
-            }, 2000);
-            // $("#loginpopup").css("display", "block");
-        }
-    });
-});
+       
+    
     </script>
     <script src="/js/bundle.js"></script>
 

@@ -388,6 +388,7 @@ const uploadPhoto = (req,res) => {
             }
             return res.status(200).json({
                 status : "success",
+                message : 'Uploaded successfully',
                 userdetails : Saved_user
             })
         })

@@ -8364,10 +8364,39 @@ module.exports.default = axios;
 
 },{"./utils":"../../node_modules/axios/lib/utils.js","./helpers/bind":"../../node_modules/axios/lib/helpers/bind.js","./core/Axios":"../../node_modules/axios/lib/core/Axios.js","./core/mergeConfig":"../../node_modules/axios/lib/core/mergeConfig.js","./defaults":"../../node_modules/axios/lib/defaults.js","./cancel/Cancel":"../../node_modules/axios/lib/cancel/Cancel.js","./cancel/CancelToken":"../../node_modules/axios/lib/cancel/CancelToken.js","./cancel/isCancel":"../../node_modules/axios/lib/cancel/isCancel.js","./helpers/spread":"../../node_modules/axios/lib/helpers/spread.js"}],"../../node_modules/axios/index.js":[function(require,module,exports) {
 module.exports = require('./lib/axios');
-},{"./lib/axios":"../../node_modules/axios/lib/axios.js"}],"auth/authHelper.js":[function(require,module,exports) {
+},{"./lib/axios":"../../node_modules/axios/lib/axios.js"}],"user/alerts.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.showAlert = void 0;
+
+var showAlert = function showAlert(status, message) {
+  if (status.localeCompare("fail") == 0) {
+    $(".modal-content, .modal-content p").css("background-color", "rgb(248, 59, 59)");
+    $(".modal-content p").html(message);
+    $(".modal").css("display", "block");
+    $(".close").css("background-color", "rgb(248, 59, 59)");
+  } else {
+    $(".modal-content, .modal-content p").css("background-color", "#075E54");
+    $(".modal-content p").html(message);
+    $(".modal").css("display", "block");
+    $(".close").css("background-color", "rgb(7, 94, 84)");
+  }
+
+  $(".close").click(function () {
+    $("#myModal").css("display", "none");
+  });
+};
+
+exports.showAlert = showAlert;
+},{}],"auth/authHelper.js":[function(require,module,exports) {
 "use strict";
 
 var _axios = _interopRequireDefault(require("axios"));
+
+var _alerts = require("../user/alerts");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8389,7 +8418,7 @@ var login = function login(email, password) {
   }).then(function (response) {
     if (response.data.status == 'success') {
       // response.data is the whole object recieved --- response.data.anything which you sent is the key here
-      //console.log(response)
+      //console.log(response.data.message)
       localStorage.setItem('userid', response.data.user._id);
       localStorage.setItem('name', response.data.firstname);
       localStorage.setItem('token', response.data.jwt);
@@ -8398,6 +8427,7 @@ var login = function login(email, password) {
       // redirecting to home
       // TODO give an alert button
 
+      (0, _alerts.showAlert)('success', 'Login Successfull');
       window.setTimeout(function () {
         location.assign("/gvj-api/"); // going to home page
       }, 1500);
@@ -8407,8 +8437,9 @@ var login = function login(email, password) {
     // and response object gets stored in error obj
     if (error.response.data.error) {
       console.log(error.response.data.error);
+      (0, _alerts.showAlert)('fail', error.response.data.error);
     } else {
-      console.log("Internal Server Error");
+      (0, _alerts.showAlert)('fail', "Internal Server Error");
     }
   });
 }; // login ends
@@ -8419,8 +8450,9 @@ var logout = function logout() {
     method: 'get',
     url: '/gvj-api/signout'
   }).then(function (response) {
-    console.log(response.data.message); // a small example to redirect to some page
-
+    // console.log(response.data.message)
+    // a small example to redirect to some page
+    (0, _alerts.showAlert)('success', response.data.message);
     localStorage.removeItem('token');
     localStorage.removeItem('userid');
     localStorage.removeItem('chk-data');
@@ -8428,7 +8460,8 @@ var logout = function logout() {
       location.assign('/gvj-api');
     }, 2000);
   }).catch(function (err) {
-    console.log(err.response.data.error);
+    // console.log(err.response.data.error)
+    (0, _alerts.showAlert)('fail', error.response.data.error);
   });
 }; // logout ends
 
@@ -8447,16 +8480,18 @@ var signup = function signup(firstname, lastname, email, password) {
       password: password
     }
   }).then(function (response) {
-    console.log(response.data.message); // any alert button
+    // console.log(response.data.message)
+    (0, _alerts.showAlert)('success', response.data.message); // any alert button
 
     window.setTimeout(function () {
       location.assign('/gvj-api/login');
     }, 1500);
   }).catch(function (error) {
     if (error.response.data.error) {
-      console.log(error.response.data.error);
+      // console.log(error.response.data.error)
+      (0, _alerts.showAlert)('fail', error.response.data.error);
     } else {
-      console.log("Internal Server Error");
+      (0, _alerts.showAlert)('fail', "Internal Server Error");
     }
   });
 };
@@ -8472,20 +8507,22 @@ var forgotpassword = function forgotpassword(email) {
       email: email
     }
   }).then(function (response) {
-    console.log(response.data.message); // alert to be put check the reset link for reset password
-
+    // console.log(response.data.message)
+    // alert to be put check the reset link for reset password
+    (0, _alerts.showAlert)('success', response.data.message);
     window.setTimeout(function () {
       location.assign('/gvj-api/login');
     }, 2000);
   }).catch(function (error) {
     // TODO again an alert to be put with below messages
     if (error.response.data.error) {
-      console.log(error.response.data.error);
+      // console.log(error.response.data.error)
+      (0, _alerts.showAlert)('fail', error.response.data.error);
       window.setTimeout(function () {
         location.reload(true);
       }, 2000);
     } else {
-      console.log("Internal Server Error");
+      (0, _alerts.showAlert)('fail', "Internal Server Error");
     }
   });
 };
@@ -8503,18 +8540,20 @@ var resetpassword = function resetpassword(password, passwordconfirm) {
       passwordconfirm: passwordconfirm
     }
   }).then(function (response) {
-    console.log(response);
-    console.log(response.data.message); // alert to be put check the reset link for reset password
-
+    // console.log(response)
+    // console.log(response.data.message)
+    // alert to be put check the reset link for reset password
+    (0, _alerts.showAlert)('success', response.data.message);
     window.setTimeout(function () {
       location.assign('/gvj-api/login');
     }, 2000);
   }).catch(function (error) {
     if (error.response.data.error) {
-      console.log(error.response.data.error);
+      // console.log(error.response.data.error)
+      (0, _alerts.showAlert)('fail', error.response.data.error);
       location.assign('/gvj-api');
     } else {
-      console.log("Internal Server Error");
+      (0, _alerts.showAlert)('fail', "Internal Server Error");
     }
   });
 };
@@ -8524,7 +8563,7 @@ var getforgotpassword = function getforgotpassword() {
 };
 
 var getlogin = function getlogin() {
-  console.log("Clicked here");
+  // console.log("Clicked here")
   location.assign('/gvj-api/login');
 };
 
@@ -8542,10 +8581,12 @@ module.exports = {
   getlogin: getlogin,
   getsignup: getsignup
 };
-},{"axios":"../../node_modules/axios/index.js"}],"auth/authListeners.js":[function(require,module,exports) {
+},{"axios":"../../node_modules/axios/index.js","../user/alerts":"user/alerts.js"}],"auth/authListeners.js":[function(require,module,exports) {
 "use strict";
 
 var _authHelper = require("./authHelper");
+
+var _alerts = require("../user/alerts");
 
 var LoginListener = function LoginListener(e) {
   e.preventDefault();
@@ -8580,10 +8621,10 @@ var ResetPasswordListener = function ResetPasswordListener(e) {
   var newpasswordconfirm = document.getElementById('newpasswordconfirm').value;
 
   if (!(newpassword == newpasswordconfirm)) {
-    alert("Password fields doesnot match! Check again");
+    (0, _alerts.showAlert)('fail', "Password fields does not match! Check again");
   } // minimum 5 characters password
   else if (newpassword.length < 5) {
-      alert("Minimum length should be 5 characters");
+      (0, _alerts.showAlert)('fail', "Password length should be atleast 5 characters");
     } else {
       (0, _authHelper.resetpassword)(newpassword, newpasswordconfirm);
     }
@@ -8614,7 +8655,7 @@ module.exports = {
   GetLoginListener: GetLoginListener,
   GetSignupListener: GetSignupListener
 };
-},{"./authHelper":"auth/authHelper.js"}],"admin/getAdminPanel.js":[function(require,module,exports) {
+},{"./authHelper":"auth/authHelper.js","../user/alerts":"user/alerts.js"}],"admin/getAdminPanel.js":[function(require,module,exports) {
 "use strict";
 
 var _axios = _interopRequireDefault(require("axios"));
@@ -9206,6 +9247,8 @@ module.exports = {
 
 var _axios = _interopRequireDefault(require("axios"));
 
+var _alerts = require("../alerts");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var getAccountPage = function getAccountPage(userid, token, usersalt) {
@@ -9217,16 +9260,16 @@ var getAccountPage = function getAccountPage(userid, token, usersalt) {
     method: 'get',
     url: "/gvj-api/check/".concat(userid)
   }).then(function (response) {
-    console.log(response);
-
+    // console.log(response)
     if (response.data.status == 'success') {
       location.assign("/gvj-api/getaccountpage/".concat(userid, "/").concat(usersalt)); // get me just all the categories
     }
   }).catch(function (error) {
     if (error.response.data.error) {
-      console.log(error.response.data.error);
+      // console.log(error.response.data.error)
+      (0, _alerts.showAlert)('fail', error.response.data.error);
     } else {
-      console.log("Internal Server Error");
+      (0, _alerts.showAlert)('fail', "Internal Server Error");
     }
   });
 };
@@ -9244,7 +9287,8 @@ var changePassword = function changePassword(userid, token, usercurrentpassword,
     }
   }).then(function (response) {
     if (response.data.status == 'success') {
-      console.log(response.data.message);
+      // console.log(response.data.message)    
+      (0, _alerts.showAlert)('success', response.data.message);
       localStorage.removeItem('token');
       localStorage.removeItem('userid');
       localStorage.removeItem('chk-data');
@@ -9254,9 +9298,10 @@ var changePassword = function changePassword(userid, token, usercurrentpassword,
     }
   }).catch(function (error) {
     if (error.response.data.error) {
-      console.log(error.response.data.error);
+      // console.log(error.response.data.error)
+      (0, _alerts.showAlert)('fail', error.response.data.error);
     } else {
-      console.log("Internal Server Error");
+      (0, _alerts.showAlert)('fail', "Internal Server Error");
     }
   });
 };
@@ -9273,17 +9318,21 @@ var uploadUserPhoto = function uploadUserPhoto(userid, token, usersalt, photo) {
     url: "/gvj-api/user/upload/".concat(userid),
     data: form
   }).then(function (response) {
-    console.log(response.data.message);
+    // console.log(response.data.message)
+    (0, _alerts.showAlert)('success', response.data.message);
     window.setTimeout(function () {
       location.assign("/gvj-api/profilepage/".concat(userid, "/").concat(usersalt));
     }, 2000);
   }).catch(function (error) {
-    console.log(error.response);
-
+    // console.log(error.response)
     if (error.response.data.error) {
-      console.log(error.response.data.error);
+      // console.log(error.response.data.error)
+      (0, _alerts.showAlert)('fail', error.response.data.error);
+      window.setTimeout(function () {
+        location.reload(true);
+      }, 2000);
     } else {
-      console.log("Internal Server Error");
+      (0, _alerts.showAlert)('fail', "Internal Server Error");
     }
   });
 };
@@ -9296,16 +9345,16 @@ var getMyProfile = function getMyProfile(userid, token, usersalt) {
     method: 'get',
     url: "/gvj-api/check/".concat(userid)
   }).then(function (response) {
-    console.log(response);
-
+    // console.log(response)
     if (response.data.status == 'success') {
       location.assign("/gvj-api/profilepage/".concat(userid, "/").concat(usersalt)); // get me just all the categories
     }
   }).catch(function (error) {
     if (error.response.data.error) {
-      console.log(error.response.data.error);
+      // console.log(error.response.data.error)
+      (0, _alerts.showAlert)('fail', error.response.data.error);
     } else {
-      console.log("Internal Server Error");
+      (0, _alerts.showAlert)('fail', 'Internal Server Error');
     }
   });
 };
@@ -9316,10 +9365,12 @@ module.exports = {
   uploadUserPhoto: uploadUserPhoto,
   getMyProfile: getMyProfile
 };
-},{"axios":"../../node_modules/axios/index.js"}],"user/Settings/SettingsListener.js":[function(require,module,exports) {
+},{"axios":"../../node_modules/axios/index.js","../alerts":"user/alerts.js"}],"user/Settings/SettingsListener.js":[function(require,module,exports) {
 "use strict";
 
 var _SettingsHelper = require("./SettingsHelper");
+
+var _alerts = require("../alerts");
 
 var token = localStorage.getItem('token');
 var userid = localStorage.getItem('userid');
@@ -9337,12 +9388,21 @@ var changePasswordListener = function changePasswordListener(e) {
   var usernewconfirmpassword = document.getElementById('usernewconfirmpassword').value;
 
   if (!(usernewpassword == usernewconfirmpassword)) {
-    alert("Password fields doesnot match! Check again");
+    (0, _alerts.showAlert)("fail", "Password fields doesnot match! Check again");
+    window.setTimeout(function () {
+      location.reload(true);
+    }, 2000);
   } // minimum 5 characters password
   else if (usernewpassword.length < 5) {
-      alert("Minimum length should be 5 characters");
+      (0, _alerts.showAlert)("fail", "Minimum length should be 5 characters");
+      window.setTimeout(function () {
+        location.reload(true);
+      }, 2000);
     } else if (usercurrentpassword == usernewpassword) {
-      alert("New Password and Current Password should not be same..Change it!");
+      (0, _alerts.showAlert)("fail", "New Password and Current Password should not be same..Change it!");
+      window.setTimeout(function () {
+        location.reload(true);
+      }, 2000);
     } else {
       (0, _SettingsHelper.changePassword)(userid, token, usercurrentpassword, usernewpassword);
     }
@@ -9368,10 +9428,12 @@ module.exports = {
   getMyProfileListener: getMyProfileListener // adding here as its the root of all user data
 
 };
-},{"./SettingsHelper":"user/Settings/SettingsHelper.js"}],"user/Cart/CartHelper.js":[function(require,module,exports) {
+},{"./SettingsHelper":"user/Settings/SettingsHelper.js","../alerts":"user/alerts.js"}],"user/Cart/CartHelper.js":[function(require,module,exports) {
 "use strict";
 
 var _axios = _interopRequireDefault(require("axios"));
+
+var _alerts = require("../alerts");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -9387,15 +9449,17 @@ var addItemToCart = function addItemToCart(userid, token, id) {
       id: id
     }
   }).then(function (response) {
-    console.log(response.data.message);
+    // console.log(response.data.message)
+    (0, _alerts.showAlert)('success', response.data.message);
     window.setTimeout(function () {
       location.assign("/gvj-api/");
     }, 1500);
   }).catch(function (error) {
     if (error.response.data.error) {
-      console.log(error.response.data.error);
+      // console.log(error.response.data.error)
+      (0, _alerts.showAlert)('fail', error.response.data.error);
     } else {
-      console.log("Internal Server Error");
+      (0, _alerts.showAlert)('fail', "Internal Server Error");
     }
   });
 };
@@ -9409,13 +9473,14 @@ var getCartPage = function getCartPage(userid, token, usersalt) {
     method: 'get',
     url: "/gvj-api/check/".concat(userid)
   }).then(function (response) {
-    console.log('getting cart Page');
+    // console.log('getting cart Page')
     location.assign("/gvj-api/cart/".concat(userid, "/").concat(usersalt));
   }).catch(function (error) {
     if (error.response.data.error) {
-      console.log(error.response.data.error);
+      // console.log(error.response.data.error)
+      (0, _alerts.showAlert)('fail', error.response.data.error);
     } else {
-      console.log("Internal Server Error");
+      (0, _alerts.showAlert)('fail', "Internal Server Error");
     }
   });
 };
@@ -9429,15 +9494,17 @@ var removeFromCart = function removeFromCart(userid, token, usersalt, cartid) {
     method: 'delete',
     url: "/gvj-api/cart/".concat(cartid, "/").concat(userid)
   }).then(function (response) {
-    console.log(response.data.message);
+    // console.log(response.data.message)
+    (0, _alerts.showAlert)('success', response.data.message);
     window.setTimeout(function () {
       location.assign("/gvj-api/cart/".concat(userid, "/").concat(usersalt));
     }, 1500);
   }).catch(function (error) {
     if (error.response.data.error) {
-      console.log(error.response.data.error);
+      // console.log(error.response.data.error)
+      (0, _alerts.showAlert)('fail', error.response.data.error);
     } else {
-      console.log("Internal Server Error");
+      (0, _alerts.showAlert)('fail', "Internal Server Error");
     }
   });
 };
@@ -9454,16 +9521,18 @@ var applyQuantity = function applyQuantity(userid, token, usersalt, cartid, quan
       quantity: quantity
     }
   }).then(function (response) {
-    console.log(response.data.message); // alert to be put check the reset link for reset password
-
+    // console.log(response.data.message)
+    // alert to be put check the reset link for reset password
+    (0, _alerts.showAlert)('success', response.data.message);
     window.setTimeout(function () {
       location.assign("/gvj-api/cart/".concat(userid, "/").concat(usersalt));
     }, 2000);
   }).catch(function (error) {
     if (error.response.data.error) {
-      console.log(error.response.data.error);
+      // console.log(error.response.data.error)
+      (0, _alerts.showAlert)('fail', error.response.data.error);
     } else {
-      console.log("Internal Server Error");
+      (0, _alerts.showAlert)('fail', "Internal Server Error");
     }
   });
 };
@@ -9474,25 +9543,27 @@ module.exports = {
   removeFromCart: removeFromCart,
   applyQuantity: applyQuantity
 };
-},{"axios":"../../node_modules/axios/index.js"}],"user/Cart/CartListener.js":[function(require,module,exports) {
+},{"axios":"../../node_modules/axios/index.js","../alerts":"user/alerts.js"}],"user/Cart/CartListener.js":[function(require,module,exports) {
 "use strict";
 
 var _CartHelper = require("./CartHelper");
+
+var _alerts = require("../alerts");
 
 var token = localStorage.getItem('token');
 var userid = localStorage.getItem('userid');
 var usersalt = localStorage.getItem('chk-data');
 
 var addItemToCartListener = function addItemToCartListener(e) {
-  e.preventDefault();
+  e.preventDefault(); // this id everywhere is the productid
 
-  if (userid == undefined) {
-    alert('Please login to add to cart');
-  } // this id everywhere is the productid
+  var id = e.target.name; // console.log(userid)
 
-
-  var id = e.target.name;
-  (0, _CartHelper.addItemToCart)(userid, token, id);
+  if (!userid) {
+    (0, _alerts.showAlert)('fail', 'Login to add to cart');
+  } else {
+    (0, _CartHelper.addItemToCart)(userid, token, id);
+  }
 };
 
 var getCartPageListener = function getCartPageListener(e) {
@@ -9510,13 +9581,13 @@ var removeFromCartListener = function removeFromCartListener(e) {
 var applyQuantityListener = function applyQuantityListener(e) {
   e.preventDefault();
   var cartid = e.target.name;
-  var quantity = document.getElementById(cartid).value;
+  var quantity = document.getElementsByClassName(cartid)[0].value;
   console.log(quantity);
 
   if (parseInt(quantity) > 0) {
     (0, _CartHelper.applyQuantity)(userid, token, usersalt, cartid, parseInt(quantity));
   } else {
-    alert('Bad choice items cannot be 0 or less than it');
+    (0, _alerts.showAlert)('fail', 'Choose appropriate quantity');
   }
 };
 
@@ -9526,10 +9597,12 @@ module.exports = {
   removeFromCartListener: removeFromCartListener,
   applyQuantityListener: applyQuantityListener
 };
-},{"./CartHelper":"user/Cart/CartHelper.js"}],"user/Orders/OrderHelper.js":[function(require,module,exports) {
+},{"./CartHelper":"user/Cart/CartHelper.js","../alerts":"user/alerts.js"}],"user/Orders/OrderHelper.js":[function(require,module,exports) {
 "use strict";
 
 var _axios = _interopRequireDefault(require("axios"));
+
+var _alerts = require("../alerts");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -9542,13 +9615,14 @@ var getMyOrder = function getMyOrder(userid, token, usersalt) {
     method: 'get',
     url: "/gvj-api/check/".concat(userid)
   }).then(function (response) {
-    console.log('getting order Page');
+    // console.log('getting order Page')
     location.assign("/gvj-api/myorders/".concat(userid, "/").concat(usersalt));
   }).catch(function (error) {
     if (error.response.data.error) {
-      console.log(error.response.data.error);
+      // console.log(error.response.data.error)
+      (0, _alerts.showAlert)('fail', error.response.data.error);
     } else {
-      console.log("Internal Server Error");
+      (0, _alerts.showAlert)('fail', "Internal Server Error");
     }
   });
 };
@@ -9562,13 +9636,14 @@ var getMyPurchases = function getMyPurchases(userid, token, usersalt) {
     method: 'get',
     url: "/gvj-api/check/".concat(userid)
   }).then(function (response) {
-    console.log('getting purchase Page');
+    // console.log('getting purchase Page')
     location.assign("/gvj-api/mypurchases/".concat(userid, "/").concat(usersalt));
   }).catch(function (error) {
     if (error.response.data.error) {
-      console.log(error.response.data.error);
+      // console.log(error.response.data.error)
+      (0, _alerts.showAlert)('fail', error.response.data.error);
     } else {
-      console.log("Internal Server Error");
+      (0, _alerts.showAlert)('fail', "Internal Server Error");
     }
   });
 };
@@ -9577,7 +9652,7 @@ module.exports = {
   getMyOrder: getMyOrder,
   getMyPurchases: getMyPurchases
 };
-},{"axios":"../../node_modules/axios/index.js"}],"user/Orders/OrderListener.js":[function(require,module,exports) {
+},{"axios":"../../node_modules/axios/index.js","../alerts":"user/alerts.js"}],"user/Orders/OrderListener.js":[function(require,module,exports) {
 "use strict";
 
 var _OrderHelper = require("./OrderHelper");
@@ -9605,6 +9680,8 @@ module.exports = {
 
 var _axios = _interopRequireDefault(require("axios"));
 
+var _alerts = require("../user/alerts");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var stripe = Stripe('pk_test_GrgDSUWd6Kb1RiYAx6LWg3Qc00KuRLu9s4'); // that is the public key
@@ -9619,19 +9696,20 @@ var doCheckout = function doCheckout(userid, token) {
     method: 'get',
     url: "/gvj-api/checkout/".concat(userid)
   }).then(function (response) {
-    console.log(response.data.data.session.id);
+    // console.log(response.data.data.session.id)
     stripe.redirectToCheckout({
       sessionId: response.data.data.session.id
     });
   }).catch(function (error) {
-    console.log(error); //console.log("Internal Server Error")
+    // console.log(error)
+    (0, _alerts.showAlert)('fail', 'Internal Server Error'); //console.log("Internal Server Error")
   });
 };
 
 module.exports = {
   doCheckout: doCheckout
 };
-},{"axios":"../../node_modules/axios/index.js"}],"Payment/paymentlistener.js":[function(require,module,exports) {
+},{"axios":"../../node_modules/axios/index.js","../user/alerts":"user/alerts.js"}],"Payment/paymentlistener.js":[function(require,module,exports) {
 "use strict";
 
 var _stripe = require("./stripe");

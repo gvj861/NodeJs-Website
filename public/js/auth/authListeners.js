@@ -1,5 +1,6 @@
 import {login,logout,signup,forgotpassword,resetpassword,getforgotpassword,getlogin,getsignup} from './authHelper'
 
+import {showAlert} from '../user/alerts'
 const LoginListener = (e) => {
     
     e.preventDefault();
@@ -43,12 +44,12 @@ const ResetPasswordListener = (e) => {
     const newpassword = document.getElementById('newpassword').value;
     const newpasswordconfirm = document.getElementById('newpasswordconfirm').value;
     if (!(newpassword == newpasswordconfirm)){
-        alert("Password fields doesnot match! Check again")
+        showAlert('fail',"Password fields does not match! Check again")
     }
      // minimum 5 characters password
     else if (newpassword.length < 5)
     {
-        alert("Minimum length should be 5 characters")
+        showAlert('fail',"Password length should be atleast 5 characters")
     }
     else{
     resetpassword(newpassword,newpasswordconfirm)

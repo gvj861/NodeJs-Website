@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-
+import { showAlert } from '../user/alerts';
 
 // these are the fields expected from the user
 
@@ -22,7 +22,7 @@ axios({
 .then ( (response) => {
     if (response.data.status == 'success'){
         // response.data is the whole object recieved --- response.data.anything which you sent is the key here
-        //console.log(response)
+        //console.log(response.data.message)
         localStorage.setItem('userid',response.data.user._id)
         localStorage.setItem('name',response.data.firstname)
         localStorage.setItem('token',response.data.jwt)
@@ -33,7 +33,7 @@ axios({
         // redirecting to home
 
         // TODO give an alert button
-        
+        showAlert('success','Login Successfull')
        window.setTimeout( ()=> {
                 location.assign(`/gvj-api/`) // going to home page
         },1500)
@@ -45,10 +45,11 @@ axios({
     // and response object gets stored in error obj
     if (error.response.data.error){
         console.log(error.response.data.error)
+        showAlert('fail',error.response.data.error)
         
     }
     else{
-        console.log("Internal Server Error")
+        showAlert('fail',"Internal Server Error")
     }
 })
 
@@ -68,8 +69,9 @@ const logout = ()=> {
     })
     .then(
         (response) => {
-            console.log(response.data.message)
+            // console.log(response.data.message)
             // a small example to redirect to some page
+            showAlert('success',response.data.message)
             localStorage.removeItem('token')
             localStorage.removeItem('userid')
             localStorage.removeItem('chk-data')
@@ -79,7 +81,9 @@ const logout = ()=> {
         }
     )
     .catch((err)=>{
-        console.log(err.response.data.error)
+        // console.log(err.response.data.error)
+        showAlert('fail',error.response.data.error)
+
     })
 }
 
@@ -102,7 +106,9 @@ axios({
 })
 .then(
     (response) => {
-        console.log(response.data.message)
+        // console.log(response.data.message)
+        showAlert('success',response.data.message)
+
         
         // any alert button
         window.setTimeout( ()=> {
@@ -114,10 +120,12 @@ axios({
     (error) => {
 
         if (error.response.data.error){
-            console.log(error.response.data.error)
+            // console.log(error.response.data.error)
+        showAlert('fail',error.response.data.error)
+
         }
         else{
-            console.log("Internal Server Error")
+            showAlert('fail',"Internal Server Error")
         }
 
     }
@@ -139,8 +147,9 @@ const forgotpassword = (email) => {
     .then(
         (response) => {
             
-            console.log(response.data.message)
+            // console.log(response.data.message)
             // alert to be put check the reset link for reset password
+            showAlert('success',response.data.message)
 
             window.setTimeout(()=>{
                 location.assign('/gvj-api/login')
@@ -152,7 +161,9 @@ const forgotpassword = (email) => {
 
             // TODO again an alert to be put with below messages
             if (error.response.data.error){
-                console.log(error.response.data.error)
+                // console.log(error.response.data.error)
+        showAlert('fail',error.response.data.error)
+
                 
                 window.setTimeout(()=>{
                     location.reload(true)
@@ -160,7 +171,7 @@ const forgotpassword = (email) => {
                 
             }
             else{
-                console.log("Internal Server Error")
+                showAlert('fail',"Internal Server Error")
             }
 
         }
@@ -183,10 +194,10 @@ const resetpassword = (password,passwordconfirm) => {
     })
     .then(
         (response) => {
-    console.log(response)
-    console.log(response.data.message)
+    // console.log(response)
+    // console.log(response.data.message)
             // alert to be put check the reset link for reset password
-
+            showAlert('success',response.data.message)
             window.setTimeout(()=>{
                 location.assign('/gvj-api/login')
             },2000)
@@ -196,12 +207,14 @@ const resetpassword = (password,passwordconfirm) => {
         (error) => {
 
             if (error.response.data.error){
-                console.log(error.response.data.error)
+                // console.log(error.response.data.error)
+        showAlert('fail',error.response.data.error)
+
                 location.assign('/gvj-api')
                 
             }
             else{
-                console.log("Internal Server Error")
+                showAlert('fail',"Internal Server Error")
             }
 
         }
@@ -216,7 +229,7 @@ const getforgotpassword = ()=> {
 }
 
 const getlogin = () => {
-    console.log("Clicked here")
+    // console.log("Clicked here")
     location.assign('/gvj-api/login')
 }
 

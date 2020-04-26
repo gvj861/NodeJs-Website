@@ -5,6 +5,7 @@ const token = localStorage.getItem('token')
 const userid = localStorage.getItem('userid')
 const usersalt = localStorage.getItem('chk-data')
 
+import {showAlert} from '../alerts'
 
 
 
@@ -23,15 +24,27 @@ const changePasswordListener = (e) => {
     
 
     if (!(usernewpassword == usernewconfirmpassword)){
-        alert("Password fields doesnot match! Check again")
+
+        showAlert("fail","Password fields doesnot match! Check again")
+        window.setTimeout(()=> {
+            location.reload(true)
+        },2000)
+
     }
      // minimum 5 characters password
     else if (usernewpassword.length < 5)
     {
-        alert("Minimum length should be 5 characters")
+        showAlert("fail","Minimum length should be 5 characters")
+        window.setTimeout(()=> {
+            location.reload(true)
+        },2000)
+
     }
     else if (usercurrentpassword == usernewpassword){
-        alert("New Password and Current Password should not be same..Change it!")
+        showAlert("fail","New Password and Current Password should not be same..Change it!")
+        window.setTimeout(()=> {
+            location.reload(true)
+        },2000)
     }
     else{
     changePassword(userid,token,usercurrentpassword,usernewpassword);

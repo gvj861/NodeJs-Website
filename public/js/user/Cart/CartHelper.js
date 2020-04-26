@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 
+import { showAlert } from '../alerts';
 
 
 const addItemToCart = (userid,token,id) => {
@@ -17,7 +18,8 @@ const addItemToCart = (userid,token,id) => {
     .then(
         (response) => {
     
-        console.log(response.data.message)
+        // console.log(response.data.message)
+        showAlert('success',response.data.message)
         window.setTimeout(()=>{
                 location.assign(`/gvj-api/`)
             },1500)
@@ -27,11 +29,15 @@ const addItemToCart = (userid,token,id) => {
         (error) => {
 
             if (error.response.data.error){
-                console.log(error.response.data.error)
+                // console.log(error.response.data.error)
+
+                showAlert('fail',error.response.data.error)
+               
+            
                 
             }
             else{
-                console.log("Internal Server Error")
+                showAlert('fail',"Internal Server Error")
             }
             
 
@@ -56,7 +62,7 @@ const getCartPage = (userid,token,usersalt) => {
     })
     .then(
         (response) => {
-            console.log('getting cart Page')
+            // console.log('getting cart Page')
            location.assign(`/gvj-api/cart/${userid}/${usersalt}`)
         }
     )
@@ -64,11 +70,12 @@ const getCartPage = (userid,token,usersalt) => {
         (error) => {
 
             if (error.response.data.error){
-                console.log(error.response.data.error)
+                // console.log(error.response.data.error)
+                showAlert('fail',error.response.data.error)
                 
             }
             else{
-                console.log("Internal Server Error")
+                showAlert('fail',"Internal Server Error")
             }
             
 
@@ -93,7 +100,9 @@ const removeFromCart = (userid,token,usersalt,cartid) => {
     .then(
         (response) => {
     
-        console.log(response.data.message)
+        // console.log(response.data.message)
+        showAlert('success',response.data.message)
+
         window.setTimeout(()=>{
                 location.assign(`/gvj-api/cart/${userid}/${usersalt}`)
             },1500)
@@ -103,11 +112,12 @@ const removeFromCart = (userid,token,usersalt,cartid) => {
         (error) => {
 
             if (error.response.data.error){
-                console.log(error.response.data.error)
+                // console.log(error.response.data.error)
+                showAlert('fail',error.response.data.error)
                 
             }
             else{
-                console.log("Internal Server Error")
+                showAlert('fail',"Internal Server Error")
             }
             
 
@@ -130,9 +140,10 @@ const applyQuantity = (userid,token,usersalt,cartid,quantity) => {
     })
     .then(
         (response) => {
-    console.log(response.data.message)
+            // console.log(response.data.message)
             // alert to be put check the reset link for reset password
-
+            showAlert('success',response.data.message)
+            
             window.setTimeout(()=>{
                 location.assign(`/gvj-api/cart/${userid}/${usersalt}`)
             },2000)
@@ -142,11 +153,13 @@ const applyQuantity = (userid,token,usersalt,cartid,quantity) => {
         (error) => {
 
             if (error.response.data.error){
-                console.log(error.response.data.error)
+                // console.log(error.response.data.error)
+                showAlert('fail',error.response.data.error)
+
                 
             }
             else{
-                console.log("Internal Server Error")
+                showAlert('fail',"Internal Server Error")
             }
             
 

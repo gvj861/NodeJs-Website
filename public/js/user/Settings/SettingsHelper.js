@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+import {showAlert} from '../alerts';
 
 const getAccountPage = (userid,token,usersalt) => {  // thsi is not used because pavan made a SPA for USers
     axios({
@@ -13,7 +14,8 @@ const getAccountPage = (userid,token,usersalt) => {  // thsi is not used because
     })
     .then(
         (response) => {
-            console.log(response)
+            // console.log(response)
+
             if (response.data.status == 'success'){
 
                 location.assign(`/gvj-api/getaccountpage/${userid}/${usersalt}`) // get me just all the categories
@@ -25,10 +27,12 @@ const getAccountPage = (userid,token,usersalt) => {  // thsi is not used because
     .catch(
         (error) => {
             if (error.response.data.error){
-                console.log(error.response.data.error)
+                // console.log(error.response.data.error)
+            showAlert('fail',error.response.data.error)
+
             }
             else{
-                console.log("Internal Server Error")
+                showAlert('fail',"Internal Server Error")
             }
             
         }
@@ -56,7 +60,9 @@ const changePassword = (userid,token,usercurrentpassword,usernewpassword) =>
         (response) => {
             
             if (response.data.status == 'success'){
-                console.log(response.data.message)    
+                // console.log(response.data.message)    
+            showAlert('success',response.data.message)
+
                 localStorage.removeItem('token')
                 localStorage.removeItem('userid')
                 localStorage.removeItem('chk-data')
@@ -72,10 +78,11 @@ const changePassword = (userid,token,usercurrentpassword,usernewpassword) =>
     .catch(
         (error) => {
             if (error.response.data.error){
-                console.log(error.response.data.error)
+                // console.log(error.response.data.error)
+                showAlert('fail',error.response.data.error)
             }
             else{
-                console.log("Internal Server Error")
+                showAlert('fail',"Internal Server Error")
             }
             
         }
@@ -101,7 +108,9 @@ const uploadUserPhoto = (userid,token,usersalt,photo) => {
         .then(
             (response) => {
     
-                console.log(response.data.message)
+                // console.log(response.data.message)
+            showAlert('success',response.data.message)
+
                 window.setTimeout(()=> {
                     location.assign(`/gvj-api/profilepage/${userid}/${usersalt}`)
                 },2000)
@@ -110,13 +119,19 @@ const uploadUserPhoto = (userid,token,usersalt,photo) => {
         )
         .catch(
             (error) => {
-                console.log(error.response)
+                // console.log(error.response)
                 if (error.response.data.error){
-                    console.log(error.response.data.error)
+                    // console.log(error.response.data.error)
+            showAlert('fail',error.response.data.error)
+            window.setTimeout(()=> {
+                location.reload(true)
+            },2000)
+    
+
                     
                 }
                 else{
-                    console.log("Internal Server Error")
+                    showAlert('fail',"Internal Server Error")
                 }
     
             }
@@ -141,7 +156,7 @@ const getMyProfile = (userid,token,usersalt) => {
     })
     .then(
         (response) => {
-            console.log(response)
+            // console.log(response)
             if (response.data.status == 'success'){
 
                 location.assign(`/gvj-api/profilepage/${userid}/${usersalt}`) // get me just all the categories
@@ -153,10 +168,12 @@ const getMyProfile = (userid,token,usersalt) => {
     .catch(
         (error) => {
             if (error.response.data.error){
-                console.log(error.response.data.error)
+                // console.log(error.response.data.error)
+            showAlert('fail',error.response.data.error)
+
             }
             else{
-                console.log("Internal Server Error")
+                showAlert('fail','Internal Server Error')
             }
             
         }
