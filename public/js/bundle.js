@@ -9502,7 +9502,8 @@ var getCartPageListener = function getCartPageListener(e) {
 
 var removeFromCartListener = function removeFromCartListener(e) {
   e.preventDefault();
-  var cartid = e.target.name;
+  var cartid = e.target.id;
+  console.log(cartid);
   (0, _CartHelper.removeFromCart)(userid, token, usersalt, cartid);
 };
 
@@ -9510,6 +9511,7 @@ var applyQuantityListener = function applyQuantityListener(e) {
   e.preventDefault();
   var cartid = e.target.name;
   var quantity = document.getElementById(cartid).value;
+  console.log(quantity);
 
   if (parseInt(quantity) > 0) {
     (0, _CartHelper.applyQuantity)(userid, token, usersalt, cartid, parseInt(quantity));
@@ -10010,8 +10012,8 @@ var uploaduserphoto = document.getElementById('uploaduserphoto'); // Settings_en
 
 var additemtocart = document.querySelectorAll('#additemtocart');
 var getmycart = document.getElementById('getmycart');
-var removefromcart = document.querySelectorAll('#removefromcart');
-var applyquantity = document.querySelectorAll('#applyquantity'); // Cart_ENDS
+var removefromcart = document.querySelectorAll('.fa-trash-o');
+var applyquantity = document.querySelectorAll('#apply'); // Cart_ENDS
 // Order_of User
 
 var getmyorders = document.getElementById('getmyorders');

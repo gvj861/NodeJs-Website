@@ -28,9 +28,9 @@ const getCartPageListener = (e) => {
 
 
 const removeFromCartListener = (e) => {
-
-    e.preventDefault();
-    const cartid = e.target.name
+    e.preventDefault()
+    const cartid = e.target.id
+    console.log(cartid)
     removeFromCart(userid,token,usersalt,cartid)
 }
 
@@ -40,6 +40,7 @@ const applyQuantityListener = (e) => {
     e.preventDefault();
     const cartid = e.target.name
     const quantity = document.getElementById(cartid).value
+    console.log(quantity)
     if (parseInt(quantity)>0){
         applyQuantity(userid,token,usersalt,cartid,parseInt(quantity))
         }

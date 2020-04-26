@@ -175,8 +175,8 @@ var uploaduserphoto = document.getElementById('uploaduserphoto')
 
 var additemtocart = document.querySelectorAll('#additemtocart')
 var getmycart = document.getElementById('getmycart')
-var removefromcart = document.querySelectorAll('#removefromcart')
-var applyquantity = document.querySelectorAll('#applyquantity')
+var removefromcart = document.querySelectorAll('.fa-trash-o')
+var applyquantity = document.querySelectorAll('#apply')
 
 // Cart_ENDS
 

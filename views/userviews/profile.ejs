@@ -515,6 +515,7 @@
             <div class="topnav" id="myTopnav">
                 <a href="/gvj-api">HOME</a>
                 <a href=" " id ="getmyprofile">PROFILE</a>
+                <a href=""id="getmycart">CART</a>
                 <a class="right" href="" id="logout">LOG OUT</a>
                 <a href="javascript:void(0);" class="icon" onclick="collapse()"><i class="fa fa-bars"></i></a>
             </div>
@@ -628,14 +629,14 @@
     <div class="purchases">
         <div id="purchase-cart">
                 <div id="title">
-                    My purchases @ Rapid Basket.
+                   DELIVERED @ Rapid Basket.
 
                 </div>
                 <!-- <hr> -->
             <% if ((typeof(purchase)==undefined) || (purchase.length == 0)) { %>
                     <div class="product">
                         <div class="orderdetails">
-                            <div id="orderid">There are no current Orders Placed or Orders Pending !!! 
+                            <div id="orderid">There are no delivered products as of now, look up into orders for status !!! 
                             </div>
                         </div>
                     </div>
